@@ -4,317 +4,226 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Prince Ardiabah — Global Systems Architect</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        :root{
-            --bg:#020b18;
-            --bg2:#041020;
-            --bg3:#071628;
-            --card:#050e1e;
-            --accent:#2563eb;
-            --purple:#8b5cf6;
-            --purple-dim:rgba(139,92,246,0.15);
-            --accent-dim:rgba(37,99,235,0.15);
-            --glow:rgba(37,99,235,0.2);
-            --purple-glow:rgba(139,92,246,0.2);
-            --text:#f0f6ff;
-            --muted:#7a93b8;
-            --border:rgba(255,255,255,0.06);
-            --border2:rgba(37,99,235,0.2);
-            --green:#22c55e;
+        :root {
+            --bg: #02010a; 
+            --panel: rgba(255, 255, 255, 0.02);
+            --accent: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.2);
+            --text-main: #f9fafb;
+            --text-dim: #9ca3af;
+            --border: rgba(255, 255, 255, 0.05);
         }
-        *{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth}
-        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-        a{color:inherit;text-decoration:none}
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 50% -20%, #2e1065 0%, transparent 45%),
+                linear-gradient(to right, rgba(139, 92, 246, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(139, 92, 246, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .wrap { max-width: 1100px; margin: auto; padding: 0 24px; }
+
+        /* NAVIGATION */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        .nav-left img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--accent); object-fit: cover; }
+        .nav-left .brand-name { font-family: 'Space Grotesk'; font-weight: 700; font-size: 1rem; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* HERO - Original layout, Strategic content */
+        .hero { padding: 120px 0 80px; text-align: center; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(40px, 7vw, 72px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; }
+        .hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 700px; margin: 0 auto 40px; }
         
-        /* GRID BG */
-        body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(37,99,235,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.03) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:0}
+        .system-status { background: rgba(139, 92, 246, 0.08); border: 1px solid var(--accent); padding: 6px 16px; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px; font-size: 10px; margin-bottom: 25px; letter-spacing: 1px; font-weight: 700; }
+        .pulse { width: 7px; height: 7px; background: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
-        /* NAV */
-        nav{position:sticky;top:0;z-index:200;background:rgba(2,11,24,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0}
-        .nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;height:68px;display:flex;justify-content:space-between;align-items:center}
-        .nav-brand{display:flex;align-items:center;gap:12px}
-        .nav-avatar{width:38px;height:38px;border-radius:50%;border:2px solid var(--purple);background:var(--bg3);overflow:hidden;display:flex;align-items:center;justify-content:center;}
-        .nav-avatar img{width:100%;height:100%;object-fit:cover}
-        .nav-name{font-family:'Space Grotesk';font-weight:700;font-size:15px;letter-spacing:0.02em}
-        .nav-name span{color:var(--purple)}
-        .nav-links{display:flex;align-items:center;gap:1.75rem}
-        .nav-links a{font-size:13px;color:var(--muted);font-weight:500;transition:color 0.2s;text-transform:uppercase;letter-spacing:0.06em}
-        .nav-links a:hover{color:var(--text)}
-        .nav-hire{font-size:13px;padding:7px 18px;border:1px solid var(--purple);border-radius:6px;color:var(--purple);font-weight:600;transition:all 0.2s}
-        .nav-hire:hover{background:var(--purple);color:#fff}
+        /* ABOUT - Blended story */
+        .about-section { padding: 80px 0; border-top: 1px solid var(--border); }
+        .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: start; }
+        .about-content h2 { font-family: 'Space Grotesk'; font-size: 2.5rem; margin-bottom: 20px; }
+        .about-content p { color: var(--text-dim); margin-bottom: 15px; }
+        .highlight-box { background: var(--panel); border: 1px solid var(--border); padding: 25px; border-radius: 20px; }
 
-        /* HERO */
-        .hero{min-height:90vh;display:flex;align-items:center;position:relative;padding:6rem 0;overflow:hidden}
-        .wrap{max-width:1200px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
-        .status-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);border:1px solid rgba(34,197,94,0.3);background:rgba(34,197,94,0.06);padding:6px 16px;border-radius:20px;margin-bottom:2rem}
-        .status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s infinite}
-        @keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
-        .hero-name{font-family:'Space Grotesk';font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;line-height:1.1;margin-bottom:1rem}
-        .hero-name .accent{color:var(--accent)}
-        .hero-role{font-size:1.1rem;color:var(--muted);max-width:650px;margin-bottom:2.5rem}
-        .hero-role strong{color:var(--text)}
-        
-        .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border2);border-radius:14px;background:var(--card);max-width:800px}
-        .stat{padding:1.5rem;text-align:center;border-right:1px solid var(--border)}
-        .stat:last-child{border-right:none}
-        .stat-n{font-family:'Space Grotesk';font-size:1.8rem;font-weight:700;color:var(--accent);display:block}
-        .stat-n.purple{color:var(--purple)}
-        .stat-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
+        /* DASHBOARD - Your signature stats */
+        .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin: 60px 0 100px; }
+        .dash-item { background: var(--panel); padding: 40px 20px; text-align: center; border-radius: 20px; border: 1px solid var(--border); }
+        .dash-item h2 { font-size: 3rem; font-family: 'Space Grotesk'; color: var(--text-main); }
+        .dash-item p { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; }
 
-        /* ABOUT GRID */
-        .about-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:4rem;margin-top:4rem}
-        .sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;color:var(--purple);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem}
-        .sec-tag::before{content:'';width:20px;height:1px;background:var(--purple)}
-        .about-text p{margin-bottom:1.5rem;color:var(--muted);font-size:1.05rem}
-        .about-text strong{color:var(--text)}
+        /* SECTORS GRID */
+        .sectors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+        .sector-card { background: var(--panel); border: 1px solid var(--border); padding: 25px; border-radius: 16px; transition: 0.3s; }
+        .sector-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .sector-card i { color: var(--accent); margin-bottom: 15px; display: block; }
+        .sector-card h3 { font-size: 1rem; margin-bottom: 8px; }
+        .sector-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.4; }
 
-        .timeline{margin-top:2rem}
-        .tl-item{display:flex;gap:1.5rem;padding-bottom:1.5rem;border-left:1px solid var(--border);margin-left:10px;padding-left:25px;position:relative}
-        .tl-item::before{content:'';position:absolute;left:-5px;top:0;width:9px;height:9px;border-radius:50%;background:var(--purple);box-shadow:0 0 10px var(--purple)}
-        .tl-year{font-size:11px;font-weight:700;color:var(--purple);margin-bottom:4px}
-        .tl-title{font-weight:600;color:var(--text);font-size:14px}
-        .tl-desc{font-size:13px;color:var(--muted)}
+        /* CASE STUDIES - The high-impact section */
+        .projects-header { text-align: center; margin: 120px 0 60px; }
+        .case-study { 
+            background: var(--panel); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 30px; 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+        }
+        .case-content h3 { font-family: 'Space Grotesk'; font-size: 1.8rem; margin-bottom: 15px; }
+        .case-meta { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; margin-bottom: 8px; display: block; }
+        .stack-tag { background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--accent); margin-right: 5px; }
+        .canvas-placeholder { width: 100%; aspect-ratio: 16/9; background: #050314; border: 1px dashed var(--border); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--text-dim); }
 
-        /* SECTORS */
-        .sector-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:3rem}
-        .sector-card{background:var(--card);border:1px solid var(--border);padding:1.5rem;border-radius:12px;transition:0.3s}
-        .sector-card:hover{border-color:var(--purple);transform:translateY(-5px)}
-        .sector-icon{font-size:1.5rem;margin-bottom:1rem;display:block}
-        .sector-name{font-family:'Space Grotesk';font-weight:700;font-size:15px;margin-bottom:0.5rem}
-        .sector-desc{font-size:12px;color:var(--muted)}
+        .btn-primary { background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; }
 
-        /* PROJECT CARDS */
-        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:2rem}
-        .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;cursor:pointer;transition:0.3s;display:flex;flex-direction:column;gap:1rem;position:relative}
-        .card:hover{border-color:var(--accent);background:var(--bg2)}
-        .card-tag{font-size:10px;font-weight:700;color:var(--purple);background:var(--purple-dim);padding:4px 10px;border-radius:4px;width:fit-content;text-transform:uppercase}
-        .card-title{font-family:'Space Grotesk';font-size:17px;font-weight:700}
-        .card-desc{font-size:13.5px;color:var(--muted);flex-grow:1}
-        .card-tools{display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:1rem}
-        .tool-tag{font-size:10px;background:var(--bg3);padding:3px 8px;border-radius:4px;color:var(--muted)}
-
-        /* MODAL */
-        .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(8px)}
-        .modal-bg.open{display:flex}
-        .modal{background:var(--bg2);width:100%;max-width:700px;border-radius:24px;border:1px solid var(--border2);padding:2.5rem;max-height:90vh;overflow-y:auto;position:relative}
-        .close-btn{position:absolute;right:2rem;top:2rem;cursor:pointer;color:var(--muted)}
-        .modal-h2{font-family:'Space Grotesk';font-size:24px;margin-bottom:1.5rem}
-        .impact-box{background:var(--purple-dim);border-left:4px solid var(--purple);padding:1.5rem;border-radius:8px;margin-top:2rem}
-
-        /* BUTTONS */
-        .btn-primary{background:var(--accent);color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:0.2s}
-        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 20px var(--glow)}
-
-        @media(max-width:800px){
-            .about-grid{grid-template-columns:1fr}
-            .stats-bar{grid-template-columns:1fr 1fr}
+        @media (max-width: 850px) {
+            .case-study, .about-grid { grid-template-columns: 1fr; }
+            .case-study { padding: 25px; }
         }
     </style>
 </head>
-<body>
 
-<nav>
-    <div class="nav-inner">
-        <div class="nav-brand">
-            <div class="nav-avatar">
-                <img src="WhatsApp Image 2026-04-20 at 12.32.31.jpeg" alt="Prince Ardiabah"/>
-            </div>
-            <div class="nav-name">Prince<span>.</span></div>
+<body>
+<div class="wrap">
+    <nav>
+        <div class="nav-left">
+            <img src="WhatsApp Image 2026-04-20 at 12.32.31.jpeg" alt="Prince Ardiabah">
+            <div class="brand-name">PRINCE ARDIABAH</div>
         </div>
         <div class="nav-links">
-            <a href="#about">Story</a>
+            <a href="#about">The Journey</a>
             <a href="#sectors">Sectors</a>
             <a href="#projects">Systems</a>
-            <a href="mailto:princeardiabah@gmail.com" class="nav-hire">Initiate Sync</a>
+            <a href="#contact">Contact</a>
         </div>
+    </nav>
+
+    <header class="hero">
+        <div class="system-status">
+            <div class="pulse"></div>
+            <span>25+ AUTONOMATIONS ACTIVE IN PRODUCTION</span>
+        </div>
+        <h1>Building the <br><span style="color:var(--accent)">Autonomous Future</span>.</h1>
+        <p>Business Strategist and Automation Lead designing intelligent workflows for high-growth teams across Africa, Europe, and the Americas.</p>
+        <a href="#projects" class="btn-primary">View 10+ Case Studies <i data-lucide="arrow-right"></i></a>
+    </header>
+
+    <div class="dashboard" id="stats">
+        <div class="dash-item"><h2 class="counter" data-target="25">0</h2><p>Workflows Live</p></div>
+        <div class="dash-item"><h2 class="counter" data-target="10">0</h2><p>Sectors Optimized</p></div>
+        <div class="dash-item"><h2 class="counter" data-target="7">0</h2><p>Global Markets</p></div>
+        <div class="dash-item"><h2 class="counter" data-target="11361">0</h2><p>Community Impact</p></div>
     </div>
-</nav>
 
-<section class="hero">
-    <div class="wrap">
-        <div class="status-badge"><div class="status-dot"></div> 25+ Autonomous Agents Live</div>
-        <h1 class="hero-name">I build systems<br/>that <span class="accent">think.</span></h1>
-        <p class="hero-role">Business strategist turned <strong>AI Automation Lead</strong>. I design intelligent workflows for high-growth teams across Africa, Europe, and the Americas.</p>
-        
-        <div style="display:flex;gap:1rem;margin-bottom:4rem">
-            <a href="#projects" class="btn-primary">View Case Studies →</a>
-            <a href="https://linkedin.com/in/prince-ardiabah" class="nav-hire" style="padding:12px 24px">LinkedIn Protocol</a>
-        </div>
-
-        <div class="stats-bar">
-            <div class="stat"><span class="stat-n">10+</span><span class="stat-l">Sectors</span></div>
-            <div class="stat"><span class="stat-n purple">25+</span><span class="stat-l">Workflows</span></div>
-            <div class="stat"><span class="stat-n">7</span><span class="stat-l">Markets</span></div>
-            <div class="stat"><span class="stat-n purple">11K+</span><span class="stat-l">Impact</span></div>
-        </div>
-    </div>
-</section>
-
-<section id="about" style="padding:5rem 0">
-    <div class="wrap">
+    <section id="about" class="about-section">
         <div class="about-grid">
-            <div class="about-text">
-                <div class="sec-tag">The Origin Story</div>
-                <h2 style="font-family:'Space Grotesk'; font-size:2.5rem; margin-bottom:1.5rem">I came from people, not code.</h2>
-                <p>Most automation builders start with a terminal. I started with <strong>communities</strong>—NGO war rooms and boardrooms across Ghana, Germany, and the UK.</p>
-                <p>My background in <strong>marketing and UI/UX</strong> means I don't just build workflows—I design experiences. I spent years mentoring 500+ professionals, which taught me to listen for the <strong>real problem</strong> underneath the technical request.</p>
-                <p>Today, as a <strong>Lead at RapidWorks</strong>, I bridge the gap between business strategy and technical execution. I don't just automate tasks; I engineer outcomes.</p>
+            <div class="about-content">
+                <span class="case-meta">Why Systems?</span>
+                <h2>Strategy Meets Engineering.</h2>
+                <p>My background as a <b>Business Strategist</b> means I don't just "build bots"—I solve revenue friction. I look at your marketing, operations, and community engagement to see where automation will provide the highest ROI.</p>
+                <p>I specialize in removing manual friction, allowing founders to focus on growth while the systems handle the heavy lifting.</p>
             </div>
-            <div class="timeline">
-                <div class="tl-item">
-                    <div class="tl-year">2021-22</div>
-                    <div class="tl-title">Youth Advocacy & Board Leadership</div>
-                    <div class="tl-desc">UNICEF YEC & Ghana Library Authority. Mastering institutional systems.</div>
-                </div>
-                <div class="tl-item">
-                    <div class="tl-year">2023-24</div>
-                    <div class="tl-title">Strategy & Global Expansion</div>
-                    <div class="tl-desc">Consulting for US/UK firms. Market entry and growth architecture.</div>
-                </div>
-                <div class="tl-item">
-                    <div class="tl-year">2025-Now</div>
-                    <div class="tl-title">Automation Lead @ RapidWorks</div>
-                    <div class="tl-desc">Engineering 20+ production-grade AI systems for global scale.</div>
+            <div class="highlight-box">
+                <h4 style="color:var(--accent); font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 10px;">GLOBAL OPERATIONS</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">Remote architecture deployed for teams in:</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem; font-weight: 600;">
+                    <span>• 🇺🇸 USA</span><span>• 🇩🇪 Germany</span>
+                    <span>• 🇬🇧 UK</span><span>• 🇬🇭 Ghana</span>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="sectors" style="padding:5rem 0; background:var(--bg2); border-top:1px solid var(--border)">
-    <div class="wrap">
-        <div class="sec-tag">Industry Expertise</div>
-        <h2 style="font-family:'Space Grotesk'; font-size:2.5rem;">Sectors I'm Built For</h2>
-        <div class="sector-grid">
-            <div class="sector-card">
-                <span class="sector-icon">🏦</span>
-                <div class="sector-name">Banking & Fintech</div>
-                <div class="sector-desc">Loan pre-screening, fraud detection, and credit engines.</div>
-            </div>
-            <div class="sector-card">
-                <span class="sector-icon">🛒</span>
-                <div class="sector-name">Retail & SMEs</div>
-                <div class="sector-desc">Inventory prediction and WhatsApp sales assistants.</div>
-            </div>
-            <div class="sector-card">
-                <span class="sector-icon">🏨</span>
-                <div class="sector-name">Hospitality</div>
-                <div class="sector-desc">Booking conversion agents and digital concierges.</div>
-            </div>
-            <div class="sector-card">
-                <span class="sector-icon">🚚</span>
-                <div class="sector-name">Logistics</div>
-                <div class="sector-desc">Route optimization and predictive maintenance.</div>
-            </div>
-            <div class="sector-card">
-                <span class="sector-icon">🏥</span>
-                <div class="sector-name">Healthcare</div>
-                <div class="sector-desc">Clinic triage systems and smart queue management.</div>
-            </div>
-            <div class="sector-card">
-                <span class="sector-icon">🎓</span>
-                <div class="sector-name">Education</div>
-                <div class="sector-desc">Fee management and learning support tutors.</div>
-            </div>
+    <section id="sectors" style="padding: 60px 0;">
+        <h2 style="font-family:'Space Grotesk'; margin-bottom: 40px; text-align: center;">Industrial Impact Grid</h2>
+        <div class="sectors-grid">
+            <div class="sector-card"><i data-lucide="landmark"></i><h3>Fintech</h3><p>Loan scoring & fraud detection.</p></div>
+            <div class="sector-card"><i data-lucide="truck"></i><h3>Logistics</h3><p>Last-mile routing agents.</p></div>
+            <div class="sector-card"><i data-lucide="building"></i><h3>Real Estate</h3><p>Listing sync & lead qualification.</p></div>
+            <div class="sector-card"><i data-lucide="shopping-cart"></i><h3>SME Retail</h3><p>Predictive inventory bridges.</p></div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="projects" style="padding:5rem 0">
-    <div class="wrap">
-        <div class="sec-tag">Systems in Production</div>
-        <h2 style="font-family:'Space Grotesk'; font-size:2.5rem;">Engineered Case Studies</h2>
-        <div class="grid" id="projectGrid">
+    <section id="projects">
+        <div class="projects-header">
+            <span class="case-meta">The Proof</span>
+            <h2 style="font-family:'Space Grotesk'; font-size: 2.5rem;">Systems in Production</h2>
+        </div>
+
+        <div class="case-study">
+            <div class="case-content">
+                <span class="case-meta">Fintech</span>
+                <h3>Loan Decisioning Engine</h3>
+                <p><b>Problem:</b> Manual credit checks took 72 hours for an SME lender.</p>
+                <p><b>Solution:</b> Built a scoring engine cross-referencing mobile money data for instant risk profiles.</p>
+                <div style="margin-top: 15px;"><span class="stack-tag">n8n</span><span class="stack-tag">Postgres</span></div>
             </div>
-    </div>
-</section>
+            <div class="case-image"><div class="canvas-placeholder">Logic Architecture</div></div>
+        </div>
 
-<div class="modal-bg" id="modal">
-    <div class="modal">
-        <div class="close-btn" onclick="closeModal()">✕</div>
-        <div id="modalContent"></div>
-    </div>
+        <div class="case-study" style="direction: rtl;">
+            <div class="case-content" style="direction: ltr;">
+                <span class="case-meta">Logistics</span>
+                <h3>Route Optimization Agent</h3>
+                <p><b>Problem:</b> 15% revenue loss daily due to inefficient driver routing.</p>
+                <p><b>Solution:</b> Real-time optimization agent that dynamically re-routes fleets based on traffic.</p>
+                <div style="margin-top: 15px;"><span class="stack-tag">n8n</span><span class="stack-tag">Google Maps API</span></div>
+            </div>
+            <div class="case-image" style="direction: ltr;"><div class="canvas-placeholder">Fleet Flow</div></div>
+        </div>
+    </section>
+
+    <footer id="contact" style="padding:100px 0; text-align:center; border-top:1px solid var(--border);">
+        <h2 style="font-family:'Space Grotesk'; margin-bottom: 20px;">Ready to Scale?</h2>
+        <p style="color:var(--text-dim); margin-bottom: 40px;">Let's discuss how intelligent systems can remove your business friction.</p>
+        <div style="display:flex; justify-content:center; gap:20px;">
+            <a href="mailto:princeardiabah@gmail.com" class="btn-primary">Initiate Strategic Sync</a>
+        </div>
+        <p style="margin-top: 60px; color:var(--text-dim); font-size:10px; letter-spacing: 2px;">© 2026 PRINCE ARDIABAH — GHANA / REMOTE</p>
+    </footer>
 </div>
 
-<footer style="padding:4rem 0; text-align:center; border-top:1px solid var(--border)">
-    <p style="color:var(--muted); font-size:13px">© 2026 Prince Ardiabah — Built with AI & Strategic Intent.</p>
-</footer>
-
 <script>
-    const projects = [
-        {
-            title: "The Oracle — Conversational DB",
-            cat: "AI Architecture",
-            desc: "A natural language interface for Microsoft Teams that lets executives query company data via voice or text.",
-            tools: ["n8n", "Supabase", "Groq", "Diamond Flow"],
-            problem: "Executives spent hours looking for project updates across fragmented databases.",
-            solution: "Built a RAG-based AI agent that queries Supabase and returns human-like summaries in real-time.",
-            impact: "Reduced internal status-check meetings by 40% for the leadership team."
-        },
-        {
-            title: "Loan Decisioning Engine",
-            cat: "Fintech",
-            desc: "Automated pre-screening system for credit applicants based on alternative data points.",
-            tools: ["Make", "Python", "Airtable", "Webhooks"],
-            problem: "Loan officers were manually vetting 200+ unqualified leads daily.",
-            solution: "Designed a multi-step qualifier that scores leads before they ever hit a human desk.",
-            impact: "10x increase in lead processing speed without adding headcount."
-        },
-        {
-            title: "Global Talent Sourcing Bot",
-            cat: "Recruitment",
-            desc: "Automated candidate identification and scoring for specialized tech roles.",
-            tools: ["OpenAI", "Apify", "LinkedIn API", "Zapier"],
-            problem: "Recruiters couldn't keep up with high-volume inbound applications for remote roles.",
-            solution: "Engineered an AI agent to scrape and rank portfolios based on semantic skill matching.",
-            impact: "Reduced 'Time-to-Interview' from 14 days down to 48 hours."
-        }
-    ];
+    lucide.createIcons();
 
-    function renderProjects() {
-        const grid = document.getElementById('projectGrid');
-        grid.innerHTML = projects.map((p, i) => `
-            <div class="card" onclick="openModal(${i})">
-                <span class="card-tag">${p.cat}</span>
-                <h3 class="card-title">${p.title}</h3>
-                <p class="card-desc">${p.desc}</p>
-                <div class="card-tools">
-                    ${p.tools.map(t => `<span class="tool-tag">${t}</span>`).join('')}
-                </div>
-            </div>
-        `).join('');
-    }
+    const runCounter = () => {
+        document.querySelectorAll('.counter').forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const update = () => {
+                const count = +counter.innerText.replace(/,/g, '');
+                const inc = target / 50;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc).toLocaleString();
+                    setTimeout(update, 25);
+                } else {
+                    counter.innerText = target.toLocaleString() + '+';
+                }
+            };
+            update();
+        });
+    };
 
-    function openModal(i) {
-        const p = projects[i];
-        const modal = document.getElementById('modal');
-        document.getElementById('modalContent').innerHTML = `
-            <h2 class="modal-h2">${p.title}</h2>
-            <p style="color:var(--purple); font-weight:700; margin-bottom:1rem">PROTOCOL: ${p.cat}</p>
-            <div style="margin-bottom:1.5rem">
-                <strong>The Friction:</strong><br/>
-                <p style="color:var(--muted)">${p.problem}</p>
-            </div>
-            <div style="margin-bottom:1.5rem">
-                <strong>The Architecture:</strong><br/>
-                <p style="color:var(--muted)">${p.solution}</p>
-            </div>
-            <div class="impact-box">
-                <strong>MEASURED IMPACT:</strong><br/>
-                <p>${p.impact}</p>
-            </div>
-        `;
-        modal.classList.add('open');
-    }
-
-    function closeModal() {
-        document.getElementById('modal').classList.remove('open');
-    }
-
-    renderProjects();
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                runCounter();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    observer.observe(document.querySelector('#stats'));
 </script>
-
 </body>
 </html>
