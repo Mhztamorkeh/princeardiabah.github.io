@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Prince Ardiabah — Global Systems Architect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <style>
+        :root{
+            --bg:#020b18;
+            --bg2:#041020;
+            --bg3:#071628;
+            --card:#050e1e;
+            --accent:#2563eb;
+            --purple:#8b5cf6;
+            --purple-dim:rgba(139,92,246,0.15);
+            --accent-dim:rgba(37,99,235,0.15);
+            --glow:rgba(37,99,235,0.2);
+            --purple-glow:rgba(139,92,246,0.2);
+            --text:#f0f6ff;
+            --muted:#7a93b8;
+            --border:rgba(255,255,255,0.06);
+            --border2:rgba(37,99,235,0.2);
+            --green:#22c55e;
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+        a{color:inherit;text-decoration:none}
+        
+        /* GRID BG */
+        body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(37,99,235,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.03) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:0}
+
+        /* NAV */
+        nav{position:sticky;top:0;z-index:200;background:rgba(2,11,24,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0}
+        .nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;height:68px;display:flex;justify-content:space-between;align-items:center}
+        .nav-brand{display:flex;align-items:center;gap:12px}
+        .nav-avatar{width:38px;height:38px;border-radius:50%;border:2px solid var(--purple);background:var(--bg3);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+        .nav-avatar img{width:100%;height:100%;object-fit:cover}
+        .nav-name{font-family:'Space Grotesk';font-weight:700;font-size:15px;letter-spacing:0.02em}
+        .nav-name span{color:var(--purple)}
+        .nav-links{display:flex;align-items:center;gap:1.75rem}
+        .nav-links a{font-size:13px;color:var(--muted);font-weight:500;transition:color 0.2s;text-transform:uppercase;letter-spacing:0.06em}
+        .nav-links a:hover{color:var(--text)}
+        .nav-hire{font-size:13px;padding:7px 18px;border:1px solid var(--purple);border-radius:6px;color:var(--purple);font-weight:600;transition:all 0.2s}
+        .nav-hire:hover{background:var(--purple);color:#fff}
+
+        /* HERO */
+        .hero{min-height:90vh;display:flex;align-items:center;position:relative;padding:6rem 0;overflow:hidden}
+        .wrap{max-width:1200px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+        .status-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);border:1px solid rgba(34,197,94,0.3);background:rgba(34,197,94,0.06);padding:6px 16px;border-radius:20px;margin-bottom:2rem}
+        .status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s infinite}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+        .hero-name{font-family:'Space Grotesk';font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;line-height:1.1;margin-bottom:1rem}
+        .hero-name .accent{color:var(--accent)}
+        .hero-role{font-size:1.1rem;color:var(--muted);max-width:650px;margin-bottom:2.5rem}
+        .hero-role strong{color:var(--text)}
+        
+        .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border2);border-radius:14px;background:var(--card);max-width:800px}
+        .stat{padding:1.5rem;text-align:center;border-right:1px solid var(--border)}
+        .stat:last-child{border-right:none}
+        .stat-n{font-family:'Space Grotesk';font-size:1.8rem;font-weight:700;color:var(--accent);display:block}
+        .stat-n.purple{color:var(--purple)}
+        .stat-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
+
+        /* ABOUT GRID */
+        .about-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:4rem;margin-top:4rem}
+        .sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;color:var(--purple);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem}
+        .sec-tag::before{content:'';width:20px;height:1px;background:var(--purple)}
+        .about-text p{margin-bottom:1.5rem;color:var(--muted);font-size:1.05rem}
+        .about-text strong{color:var(--text)}
+
+        .timeline{margin-top:2rem}
+        .tl-item{display:flex;gap:1.5rem;padding-bottom:1.5rem;border-left:1px solid var(--border);margin-left:10px;padding-left:25px;position:relative}
+        .tl-item::before{content:'';position:absolute;left:-5px;top:0;width:9px;height:9px;border-radius:50%;background:var(--purple);box-shadow:0 0 10px var(--purple)}
+        .tl-year{font-size:11px;font-weight:700;color:var(--purple);margin-bottom:4px}
+        .tl-title{font-weight:600;color:var(--text);font-size:14px}
+        .tl-desc{font-size:13px;color:var(--muted)}
+
+        /* SECTORS */
+        .sector-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:3rem}
+        .sector-card{background:var(--card);border:1px solid var(--border);padding:1.5rem;border-radius:12px;transition:0.3s}
+        .sector-card:hover{border-color:var(--purple);transform:translateY(-5px)}
+        .sector-icon{font-size:1.5rem;margin-bottom:1rem;display:block}
+        .sector-name{font-family:'Space Grotesk';font-weight:700;font-size:15px;margin-bottom:0.5rem}
+        .sector-desc{font-size:12px;color:var(--muted)}
+
+        /* PROJECT CARDS */
+        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:2rem}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;cursor:pointer;transition:0.3s;display:flex;flex-direction:column;gap:1rem;position:relative}
+        .card:hover{border-color:var(--accent);background:var(--bg2)}
+        .card-tag{font-size:10px;font-weight:700;color:var(--purple);background:var(--purple-dim);padding:4px 10px;border-radius:4px;width:fit-content;text-transform:uppercase}
+        .card-title{font-family:'Space Grotesk';font-size:17px;font-weight:700}
+        .card-desc{font-size:13.5px;color:var(--muted);flex-grow:1}
+        .card-tools{display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:1rem}
+        .tool-tag{font-size:10px;background:var(--bg3);padding:3px 8px;border-radius:4px;color:var(--muted)}
+
+        /* MODAL */
+        .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(8px)}
+        .modal-bg.open{display:flex}
+        .modal{background:var(--bg2);width:100%;max-width:700px;border-radius:24px;border:1px solid var(--border2);padding:2.5rem;max-height:90vh;overflow-y:auto;position:relative}
+        .close-btn{position:absolute;right:2rem;top:2rem;cursor:pointer;color:var(--muted)}
+        .modal-h2{font-family:'Space Grotesk';font-size:24px;margin-bottom:1.5rem}
+        .impact-box{background:var(--purple-dim);border-left:4px solid var(--purple);padding:1.5rem;border-radius:8px;margin-top:2rem}
+
+        /* BUTTONS */
+        .btn-primary{background:var(--accent);color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:0.2s}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 20px var(--glow)}
+
+        @media(max-width:800px){
+            .about-grid{grid-template-columns:1fr}
+            .stats-bar{grid-template-columns:1fr 1fr}
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <div class="nav-brand">
+            <div class="nav-avatar">
+                <img src="WhatsApp Image 2026-04-20 at 12.32.31.jpeg" alt="Prince Ardiabah"/>
+            </div>
+            <div class="nav-name">Prince<span>.</span></div>
+        </div>
+        <div class="nav-links">
+            <a href="#about">Story</a>
+            <a href="#sectors">Sectors</a>
+            <a href="#projects">Systems</a>
+            <a href="mailto:princeardiabah@gmail.com" class="nav-hire">Initiate Sync</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="wrap">
+        <div class="status-badge"><div class="status-dot"></div> 25+ Autonomous Agents Live</div>
+        <h1 class="hero-name">I build systems<br/>that <span class="accent">think.</span></h1>
+        <p class="hero-role">Business strategist turned <strong>AI Automation Lead</strong>. I design intelligent workflows for high-growth teams across Africa, Europe, and the Americas.</p>
+        
+        <div style="display:flex;gap:1rem;margin-bottom:4rem">
+            <a href="#projects" class="btn-primary">View Case Studies →</a>
+            <a href="https://linkedin.com/in/prince-ardiabah" class="nav-hire" style="padding:12px 24px">LinkedIn Protocol</a>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat"><span class="stat-n">10+</span><span class="stat-l">Sectors</span></div>
+            <div class="stat"><span class="stat-n purple">25+</span><span class="stat-l">Workflows</span></div>
+            <div class="stat"><span class="stat-n">7</span><span class="stat-l">Markets</span></div>
+            <div class="stat"><span class="stat-n purple">11K+</span><span class="stat-l">Impact</span></div>
+        </div>
+    </div>
+</section>
+
+<section id="about" style="padding:5rem 0">
+    <div class="wrap">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="sec-tag">The Origin Story</div>
+                <h2 style="font-family:'Space Grotesk'; font-size:2.5rem; margin-bottom:1.5rem">I came from people, not code.</h2>
+                <p>Most automation builders start with a terminal. I started with <strong>communities</strong>—NGO war rooms and boardrooms across Ghana, Germany, and the UK.</p>
+                <p>My background in <strong>marketing and UI/UX</strong> means I don't just build workflows—I design experiences. I spent years mentoring 500+ professionals, which taught me to listen for the <strong>real problem</strong> underneath the technical request.</p>
+                <p>Today, as a <strong>Lead at RapidWorks</strong>, I bridge the gap between business strategy and technical execution. I don't just automate tasks; I engineer outcomes.</p>
+            </div>
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-year">2021-22</div>
+                    <div class="tl-title">Youth Advocacy & Board Leadership</div>
+                    <div class="tl-desc">UNICEF YEC & Ghana Library Authority. Mastering institutional systems.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-year">2023-24</div>
+                    <div class="tl-title">Strategy & Global Expansion</div>
+                    <div class="tl-desc">Consulting for US/UK firms. Market entry and growth architecture.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-year">2025-Now</div>
+                    <div class="tl-title">Automation Lead @ RapidWorks</div>
+                    <div class="tl-desc">Engineering 20+ production-grade AI systems for global scale.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="sectors" style="padding:5rem 0; background:var(--bg2); border-top:1px solid var(--border)">
+    <div class="wrap">
+        <div class="sec-tag">Industry Expertise</div>
+        <h2 style="font-family:'Space Grotesk'; font-size:2.5rem;">Sectors I'm Built For</h2>
+        <div class="sector-grid">
+            <div class="sector-card">
+                <span class="sector-icon">🏦</span>
+                <div class="sector-name">Banking & Fintech</div>
+                <div class="sector-desc">Loan pre-screening, fraud detection, and credit engines.</div>
+            </div>
+            <div class="sector-card">
+                <span class="sector-icon">🛒</span>
+                <div class="sector-name">Retail & SMEs</div>
+                <div class="sector-desc">Inventory prediction and WhatsApp sales assistants.</div>
+            </div>
+            <div class="sector-card">
+                <span class="sector-icon">🏨</span>
+                <div class="sector-name">Hospitality</div>
+                <div class="sector-desc">Booking conversion agents and digital concierges.</div>
+            </div>
+            <div class="sector-card">
+                <span class="sector-icon">🚚</span>
+                <div class="sector-name">Logistics</div>
+                <div class="sector-desc">Route optimization and predictive maintenance.</div>
+            </div>
+            <div class="sector-card">
+                <span class="sector-icon">🏥</span>
+                <div class="sector-name">Healthcare</div>
+                <div class="sector-desc">Clinic triage systems and smart queue management.</div>
+            </div>
+            <div class="sector-card">
+                <span class="sector-icon">🎓</span>
+                <div class="sector-name">Education</div>
+                <div class="sector-desc">Fee management and learning support tutors.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" style="padding:5rem 0">
+    <div class="wrap">
+        <div class="sec-tag">Systems in Production</div>
+        <h2 style="font-family:'Space Grotesk'; font-size:2.5rem;">Engineered Case Studies</h2>
+        <div class="grid" id="projectGrid">
+            </div>
+    </div>
+</section>
+
+<div class="modal-bg" id="modal">
+    <div class="modal">
+        <div class="close-btn" onclick="closeModal()">✕</div>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<footer style="padding:4rem 0; text-align:center; border-top:1px solid var(--border)">
+    <p style="color:var(--muted); font-size:13px">© 2026 Prince Ardiabah — Built with AI & Strategic Intent.</p>
+</footer>
+
+<script>
+    const projects = [
+        {
+            title: "The Oracle — Conversational DB",
+            cat: "AI Architecture",
+            desc: "A natural language interface for Microsoft Teams that lets executives query company data via voice or text.",
+            tools: ["n8n", "Supabase", "Groq", "Diamond Flow"],
+            problem: "Executives spent hours looking for project updates across fragmented databases.",
+            solution: "Built a RAG-based AI agent that queries Supabase and returns human-like summaries in real-time.",
+            impact: "Reduced internal status-check meetings by 40% for the leadership team."
+        },
+        {
+            title: "Loan Decisioning Engine",
+            cat: "Fintech",
+            desc: "Automated pre-screening system for credit applicants based on alternative data points.",
+            tools: ["Make", "Python", "Airtable", "Webhooks"],
+            problem: "Loan officers were manually vetting 200+ unqualified leads daily.",
+            solution: "Designed a multi-step qualifier that scores leads before they ever hit a human desk.",
+            impact: "10x increase in lead processing speed without adding headcount."
+        },
+        {
+            title: "Global Talent Sourcing Bot",
+            cat: "Recruitment",
+            desc: "Automated candidate identification and scoring for specialized tech roles.",
+            tools: ["OpenAI", "Apify", "LinkedIn API", "Zapier"],
+            problem: "Recruiters couldn't keep up with high-volume inbound applications for remote roles.",
+            solution: "Engineered an AI agent to scrape and rank portfolios based on semantic skill matching.",
+            impact: "Reduced 'Time-to-Interview' from 14 days down to 48 hours."
+        }
+    ];
+
+    function renderProjects() {
+        const grid = document.getElementById('projectGrid');
+        grid.innerHTML = projects.map((p, i) => `
+            <div class="card" onclick="openModal(${i})">
+                <span class="card-tag">${p.cat}</span>
+                <h3 class="card-title">${p.title}</h3>
+                <p class="card-desc">${p.desc}</p>
+                <div class="card-tools">
+                    ${p.tools.map(t => `<span class="tool-tag">${t}</span>`).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function openModal(i) {
+        const p = projects[i];
+        const modal = document.getElementById('modal');
+        document.getElementById('modalContent').innerHTML = `
+            <h2 class="modal-h2">${p.title}</h2>
+            <p style="color:var(--purple); font-weight:700; margin-bottom:1rem">PROTOCOL: ${p.cat}</p>
+            <div style="margin-bottom:1.5rem">
+                <strong>The Friction:</strong><br/>
+                <p style="color:var(--muted)">${p.problem}</p>
+            </div>
+            <div style="margin-bottom:1.5rem">
+                <strong>The Architecture:</strong><br/>
+                <p style="color:var(--muted)">${p.solution}</p>
+            </div>
+            <div class="impact-box">
+                <strong>MEASURED IMPACT:</strong><br/>
+                <p>${p.impact}</p>
+            </div>
+        `;
+        modal.classList.add('open');
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.remove('open');
+    }
+
+    renderProjects();
+</script>
+
+</body>
+</html>
