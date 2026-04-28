@@ -5,33 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Prince Ardiabah — AI Automation Strategist</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
 :root {
-    --bg: #030014;
-    --card-bg: rgba(255, 255, 255, 0.03);
+    --bg: #020617;
     --accent: #7c3aed;
-    --accent-glow: rgba(124, 58, 237, 0.3);
-    --text-main: #f9fafb;
-    --text-dim: #9ca3af;
+    --accent-glow: rgba(124, 58, 237, 0.4);
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-dim: #94a3b8;
 }
 
-*{margin:0;padding:0;box-sizing:border-box; scroll-behavior: smooth;}
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg);
     background-image: 
-        radial-gradient(circle at 50% -20%, #3b2071 0%, transparent 50%),
-        radial-gradient(circle at 0% 100%, #1e1b4b 0%, transparent 30%);
-    color: var(--text-main);
+        radial-gradient(circle at 80% 20%, #1e1b4b 0%, transparent 40%),
+        radial-gradient(circle at 10% 80%, #0f172a 0%, transparent 40%);
+    color: #f8fafc;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-.wrap { max-width: 1100px; margin: auto; padding: 0 24px; }
+/* Background Glowing Blob */
+.blob {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    top: -10%;
+    right: -10%;
+    filter: blur(80px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.wrap { max-width: 1200px; margin: auto; padding: 0 24px; }
 
 /* NAV */
 nav {
@@ -39,245 +52,216 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 30px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(10px);
 }
-
-nav .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; }
-nav .links { display: flex; gap: 25px; }
-nav a { color: var(--text-dim); text-decoration: none; font-size: 14px; transition: 0.3s; }
-nav a:hover { color: #fff; text-shadow: 0 0 10px var(--accent); }
+.logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { color: var(--text-dim); text-decoration: none; font-size: 14px; transition: 0.3s; }
+.nav-links a:hover { color: #fff; }
 
 /* HERO SECTION */
 .hero {
-    padding: 120px 0 80px;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 60px;
+    padding: 80px 0;
 }
 
-.badge {
-    background: rgba(124, 58, 237, 0.1);
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    display: inline-block;
-}
-
-.hero h1 {
-    font-size: clamp(40px, 8vw, 72px);
+.hero-content h1 {
+    font-size: clamp(40px, 6vw, 72px);
     line-height: 1.1;
     font-weight: 800;
     margin-bottom: 24px;
-    background: linear-gradient(to bottom, #fff 60%, #6366f1);
+    background: linear-gradient(to right, #fff, #94a3b8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.hero p {
+.hero-content p {
     color: var(--text-dim);
-    font-size: 1.1rem;
-    max-width: 650px;
-    margin: 0 auto 40px;
+    font-size: 1.2rem;
+    max-width: 550px;
+    margin-bottom: 32px;
 }
 
-.btns { display: flex; gap: 15px; justify-content: center; }
-.btn {
-    padding: 14px 28px;
-    border-radius: 12px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 15px;
-}
-.primary { background: var(--accent); color: #fff; box-shadow: 0 0 20px var(--accent-glow); }
-.primary:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--accent); }
-.secondary { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: #fff; }
-.secondary:hover { background: rgba(255,255,255,0.05); }
-
-/* SKILLS CLOUD */
-.skills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    margin-top: 60px;
-}
-.skill-tag {
-    background: var(--card-bg);
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 8px 16px;
-    border-radius: 10px;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-/* SECTION TITLES */
-section { padding: 100px 0; }
-h2 { font-size: 2.5rem; margin-bottom: 40px; text-align: center; }
-
-/* PROJECT CARDS */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 24px;
-}
-
-.card {
-    background: var(--card-bg);
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 32px;
-    border-radius: 24px;
-    transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+/* PROFILE IMAGE FRAME */
+.profile-frame {
     position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 4/5;
+    background: var(--glass);
+    border-radius: 40px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    background-image: url('profile.png.jpeg'); /* Matched to your upload */
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.profile-frame:hover .profile-img {
+    transform: scale(1.05);
+}
+
+/* BENTO GRID */
+.bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(220px, auto);
+    gap: 24px;
+    margin: 80px 0;
+}
+
+.item {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 40px;
+    transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--accent);
+    transform: translateY(-8px);
+}
+
+.item-large { grid-column: span 2; }
+.item-full { grid-column: span 3; display: flex; align-items: center; justify-content: space-between; }
+
+.item i { color: var(--accent); margin-bottom: 24px; }
+.item h3 { font-size: 1.6rem; margin-bottom: 12px; font-weight: 700; }
+.item p { color: var(--text-dim); font-size: 1rem; }
+
+.mockup {
+    width: 100%;
+    height: 220px;
+    background: #0f172a;
+    border-radius: 16px;
+    margin-top: 24px;
+    border: 1px solid var(--glass-border);
     overflow: hidden;
 }
 
-.card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--accent);
-    transform: translateY(-10px);
+/* BUTTONS */
+.btn {
+    padding: 16px 32px;
+    border-radius: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
 }
-
-.card i { color: var(--accent); margin-bottom: 20px; }
-.card h3 { font-size: 1.4rem; margin-bottom: 12px; }
-.card p { color: var(--text-dim); font-size: 0.95rem; }
-
-/* SERVICES / PRICING (Inspired by your image) */
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-.price-card {
-    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 40px;
-    border-radius: 24px;
-    text-align: center;
-}
-.price-card.featured {
-    border-color: var(--accent);
-    background: rgba(124, 58, 237, 0.05);
-}
-.price-card h4 { text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 10px; }
-.price-card .cost { font-size: 3rem; font-weight: 800; margin-bottom: 20px; }
+.primary { background: var(--accent); color: #fff; box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3); }
+.secondary { border: 1px solid var(--glass-border); color: #fff; margin-left: 10px; }
+.primary:hover { transform: translateY(-2px); box-shadow: 0 15px 40px var(--accent-glow); }
 
 /* ANIMATION */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: 1s all ease;
-}
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
+.reveal { opacity: 0; transform: translateY(40px); transition: 1.2s cubic-bezier(0.17, 0.55, 0.55, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
 
-footer {
-    padding: 60px 0;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    text-align: center;
-    color: var(--text-dim);
-    font-size: 14px;
+@media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+    .hero-content p { margin: 0 auto 32px; }
+    .profile-frame { margin: 0 auto; aspect-ratio: 1/1; }
+    .bento { grid-template-columns: 1fr; }
+    .item-large, .item-full { grid-column: span 1; }
+    .item-full { flex-direction: column; text-align: center; gap: 20px; }
 }
 </style>
 </head>
 
 <body>
 
+<div class="blob"></div>
+
 <div class="wrap">
-
-<nav>
-    <div class="logo">PRINCE.AI</div>
-    <div class="links">
-        <a href="#projects">Work</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </div>
-</nav>
-
-<section class="hero">
-    <div class="reveal active">
-        <span class="badge">2026 NEXT-GEN AI STRATEGY</span>
-        <h1>AI-Driven Success.<br>Redefining the Future.</h1>
-        <p>I help scale startups through advanced automation, brand strategy, and intelligent system architecture.</p>
-        
-        <div class="btns">
-            <a href="#contact" class="btn primary">Start a Project</a>
-            <a href="#projects" class="btn secondary">View Systems</a>
+    <nav>
+        <div class="logo">PRINCE ARDIABAH</div>
+        <div class="nav-links">
+            <a href="#work">Systems</a>
+            <a href="#services">Strategy</a>
+            <a href="mailto:princeardiabah@gmail.com">Contact</a>
         </div>
+    </nav>
 
-        <div class="skills-grid">
-            <div class="skill-tag"><i data-lucide="cpu"></i> AI Automation</div>
-            <div class="skill-tag"><i data-lucide="layers"></i> Brand Strategy</div>
-            <div class="skill-tag"><i data-lucide="users"></i> Youth Mentorship</div>
-            <div class="skill-tag"><i data-lucide="code"></i> No-Code Architecture</div>
-            <div class="skill-tag"><i data-lucide="globe"></i> Remote Operations</div>
+    <header class="hero">
+        <div class="hero-content reveal active">
+            <h1>Building the <br> <span style="color:var(--accent)">AI-Powered</span> <br> Future.</h1>
+            <p>Business Strategist and Automation Lead designing intelligent workflows for high-growth teams across Ghana and Germany.</p>
+            <div class="btns">
+                <a href="mailto:princeardiabah@gmail.com" class="btn primary">Start a Project</a>
+                <a href="#work" class="btn secondary">View Systems</a>
+            </div>
         </div>
-    </div>
-</section>
+        <div class="profile-frame reveal active">
+            <div class="profile-img"></div>
+        </div>
+    </header>
 
-<section id="projects" class="reveal">
-    <h2>Core Systems</h2>
-    <div class="grid">
-        <div class="card">
-            <i data-lucide="database" size="32"></i>
-            <h3>Conversational Intelligence</h3>
-            <p>Built complex RAG pipelines that allow teams to "chat" with their internal documentation and databases instantly.</p>
-        </div>
-        <div class="card">
-            <i data-lucide="workflow" size="32"></i>
-            <h3>Rapid Branding Engine</h3>
-            <p>Automated brand identity workflows for startups, reducing turnaround time from weeks to hours.</p>
-        </div>
-        <div class="card">
-            <i data-lucide="zap" size="32"></i>
-            <h3>The ASC Ecosystem</h3>
-            <p>A mentorship infrastructure designed to connect African students with global career opportunities.</p>
-        </div>
-    </div>
-</section>
+    <section id="work">
+        <h2 style="font-size: 2.5rem; margin-bottom: 48px; font-weight: 800;">Selected Systems</h2>
+        <div class="bento">
+            
+            <div class="item item-large reveal">
+                <i data-lucide="blocks"></i>
+                <h3>Rapid Branding Architecture</h3>
+                <p>Designed a Figma-based automation process that streamlines startup branding from discovery to deployment. Scaled for teams in North Rhine-Westphalia, Germany.</p>
+                <div class="mockup" style="background: url('https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000') center/cover;"></div>
+            </div>
 
-<section id="services" class="reveal">
-    <h2>Partnership Tiers</h2>
-    <div class="pricing-grid">
-        <div class="price-card">
-            <h4>Strategy</h4>
-            <div class="cost">Audit</div>
-            <p style="margin-bottom:20px; color:var(--text-dim)">A deep dive into your current workflows to identify AI opportunities.</p>
-            <a href="mailto:princeardiabah@gmail.com" class="btn secondary">Inquire</a>
+            <div class="item reveal">
+                <i data-lucide="users"></i>
+                <h3>ASC Ecosystem</h3>
+                <p>Leading the digital infrastructure for Africa Student Connect, bridging the gap between talent and mentorship across the continent.</p>
+            </div>
+
+            <div class="item reveal">
+                <i data-lucide="cpu"></i>
+                <h3>AI Automations</h3>
+                <p>Deploying custom LLM pipelines to handle internal documentation and customer support friction.</p>
+            </div>
+
+            <div class="item item-large reveal">
+                <i data-lucide="layout"></i>
+                <h3>Strategic Marketing</h3>
+                <p>Combining data-driven marketing with AI tools to build loyal tribes around emerging startups.</p>
+                <div class="mockup" style="background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000') center/cover;"></div>
+            </div>
         </div>
-        <div class="price-card featured">
-            <h4>Execution</h4>
-            <div class="cost">Build</div>
-            <p style="margin-bottom:20px; color:var(--text-dim)">Custom-built AI agents and automated pipelines integrated into your stack.</p>
-            <a href="mailto:princeardiabah@gmail.com" class="btn primary">Book Now</a>
+    </section>
+
+    <section id="services" class="reveal">
+        <div class="item item-full">
+            <div>
+                <h3>Have a workflow problem?</h3>
+                <p>I design the systems that remove friction and surface intelligence.</p>
+            </div>
+            <a href="mailto:princeardiabah@gmail.com" class="btn primary">Get in touch</a>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="contact" class="reveal" style="text-align: center;">
-    <h2>Let's build the future.</h2>
-    <p style="color: var(--text-dim); margin-bottom: 40px;">Currently operating from Ghana, serving clients worldwide.</p>
-    <a href="mailto:princeardiabah@gmail.com" class="btn primary">Get in Touch</a>
-</section>
-
-<footer>
-    &copy; 2026 Prince Ardiabah · AI Strategist & Marketing Lead
-</footer>
-
+    <footer style="padding: 80px 0 40px; text-align: center; color: var(--text-dim); font-size: 14px;">
+        &copy; 2026 Prince Ardiabah · Business Strategist & Youth Mentor
+    </footer>
 </div>
 
 <script>
-// Scroll Reveal Effect
-const observerOptions = { threshold: 0.1 };
+// Initialize Icons
+lucide.createIcons();
+
+// Scroll Reveal Logic
+const observerOptions = { threshold: 0.15 };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -287,9 +271,6 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Initialize Icons
-lucide.createIcons();
 </script>
 
 </body>
