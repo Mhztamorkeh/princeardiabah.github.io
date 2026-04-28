@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Prince Ardiabah — AI Automation Strategist</title>
+<title>Prince Ardiabah — Global AI Systems Architect</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -24,184 +24,88 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg);
     background-image: 
-        radial-gradient(circle at 80% 20%, #1e1b4b 0%, transparent 40%),
-        radial-gradient(circle at 10% 80%, #0f172a 0%, transparent 40%);
+        radial-gradient(circle at 0% 0%, #1e1b4b 0%, transparent 35%),
+        radial-gradient(circle at 100% 100%, #0f172a 0%, transparent 35%);
     color: #f8fafc;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* Background Glowing Blob */
-.blob {
-    position: fixed;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-    top: -10%;
-    right: -10%;
-    filter: blur(80px);
-    z-index: -1;
-    pointer-events: none;
-}
-
 .wrap { max-width: 1200px; margin: auto; padding: 0 24px; }
 
 /* NAV */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 0;
-}
-.logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
+nav { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; }
+.logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; text-transform: uppercase; }
 .nav-links { display: flex; gap: 30px; }
 .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 14px; transition: 0.3s; }
 .nav-links a:hover { color: #fff; }
 
-/* HERO SECTION */
-.hero {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    align-items: center;
-    gap: 60px;
-    padding: 80px 0;
-}
+/* HERO */
+.hero { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 60px; padding: 60px 0 100px; }
+.hero-content h1 { font-size: clamp(40px, 6vw, 68px); line-height: 1.05; font-weight: 800; margin-bottom: 24px; background: linear-gradient(to bottom right, #fff 50%, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-content p { color: var(--text-dim); font-size: 1.25rem; max-width: 580px; margin-bottom: 32px; }
 
-.hero-content h1 {
-    font-size: clamp(40px, 6vw, 72px);
-    line-height: 1.1;
-    font-weight: 800;
-    margin-bottom: 24px;
-    background: linear-gradient(to right, #fff, #94a3b8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+.profile-frame { position: relative; width: 100%; aspect-ratio: 1/1; background: var(--glass); border-radius: 40px; overflow: hidden; border: 1px solid var(--glass-border); }
+.profile-img { width: 100%; height: 100%; background-image: url('profile.png.jpeg'); background-size: cover; background-position: center; }
 
-.hero-content p {
-    color: var(--text-dim);
-    font-size: 1.2rem;
-    max-width: 550px;
-    margin-bottom: 32px;
-}
-
-/* PROFILE IMAGE FRAME */
-.profile-frame {
-    position: relative;
-    width: 100%;
-    max-width: 420px;
-    aspect-ratio: 4/5;
-    background: var(--glass);
-    border-radius: 40px;
-    overflow: hidden;
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-.profile-img {
-    width: 100%;
-    height: 100%;
-    background-image: url('profile.png.jpeg'); /* Matched to your upload */
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.5s ease;
-}
-
-.profile-frame:hover .profile-img {
-    transform: scale(1.05);
-}
+/* DASHBOARD */
+.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--glass); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px; margin-bottom: 80px; backdrop-filter: blur(10px); }
+.stat-item { text-align: center; border-right: 1px solid var(--glass-border); }
+.stat-item:last-child { border-right: none; }
+.stat-item h2 { font-size: 2.5rem; font-weight: 800; color: #fff; }
+.stat-item p { color: var(--text-dim); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
 
 /* BENTO GRID */
-.bento {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(220px, auto);
-    gap: 24px;
-    margin: 80px 0;
-}
-
-.item {
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    border-radius: 30px;
-    padding: 40px;
-    transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-}
-
-.item:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: var(--accent);
-    transform: translateY(-8px);
-}
-
+.bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+.item { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 32px; padding: 40px; transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1); }
+.item:hover { border-color: var(--accent); background: rgba(124, 58, 237, 0.05); transform: translateY(-8px); }
 .item-large { grid-column: span 2; }
-.item-full { grid-column: span 3; display: flex; align-items: center; justify-content: space-between; }
-
 .item i { color: var(--accent); margin-bottom: 24px; }
-.item h3 { font-size: 1.6rem; margin-bottom: 12px; font-weight: 700; }
-.item p { color: var(--text-dim); font-size: 1rem; }
+.item h3 { font-size: 1.5rem; margin-bottom: 12px; font-weight: 700; }
+.item p { color: var(--text-dim); font-size: 0.95rem; }
 
-.mockup {
-    width: 100%;
-    height: 220px;
-    background: #0f172a;
-    border-radius: 16px;
-    margin-top: 24px;
-    border: 1px solid var(--glass-border);
-    overflow: hidden;
-}
+/* SECTOR SECTION */
+.sector-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; }
+.sector-card { background: rgba(255,255,255,0.02); border-left: 3px solid var(--accent); padding: 30px; border-radius: 0 20px 20px 0; }
+.sector-card h4 { margin-bottom: 10px; color: #fff; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+.sector-card ul { list-style: none; color: var(--text-dim); font-size: 0.9rem; }
+.sector-card li { margin-bottom: 8px; display: flex; gap: 10px; }
+.sector-card li::before { content: '→'; color: var(--accent); }
 
-/* BUTTONS */
-.btn {
-    padding: 16px 32px;
-    border-radius: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    transition: 0.3s;
-}
-.primary { background: var(--accent); color: #fff; box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3); }
+.btn { padding: 16px 32px; border-radius: 14px; font-weight: 600; text-decoration: none; display: inline-block; transition: 0.3s; cursor: pointer; }
+.primary { background: var(--accent); color: #fff; border: none; }
 .secondary { border: 1px solid var(--glass-border); color: #fff; margin-left: 10px; }
-.primary:hover { transform: translateY(-2px); box-shadow: 0 15px 40px var(--accent-glow); }
 
-/* ANIMATION */
-.reveal { opacity: 0; transform: translateY(40px); transition: 1.2s cubic-bezier(0.17, 0.55, 0.55, 1); }
+.reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-    .hero-content p { margin: 0 auto 32px; }
-    .profile-frame { margin: 0 auto; aspect-ratio: 1/1; }
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+    .stat-item { border-right: none; }
     .bento { grid-template-columns: 1fr; }
-    .item-large, .item-full { grid-column: span 1; }
-    .item-full { flex-direction: column; text-align: center; gap: 20px; }
 }
 </style>
 </head>
 
 <body>
-
-<div class="blob"></div>
-
 <div class="wrap">
     <nav>
-        <div class="logo">PRINCE ARDIABAH</div>
+        <div class="logo">Prince Ardiabah</div>
         <div class="nav-links">
             <a href="#work">Systems</a>
-            <a href="#services">Strategy</a>
-            <a href="mailto:princeardiabah@gmail.com">Contact</a>
+            <a href="#sectors">Sectors</a>
+            <a href="https://linkedin.com/in/prince-ardiabah-14b9171a9/" target="_blank">LinkedIn</a>
         </div>
     </nav>
 
     <header class="hero">
         <div class="hero-content reveal active">
-            <h1>Building the <br> <span style="color:var(--accent)">AI-Powered</span> <br> Future.</h1>
-            <p>Business Strategist and Automation Lead designing intelligent workflows for high-growth teams across Ghana and Germany.</p>
+            <h1>I turn business complexity into <span style="color:var(--accent)">Autonomous</span> logic.</h1>
+            <p>A Systems Thinker and AI Lead bridging strategy and execution for global brands. I build infrastructures that think, listen, and act without human bottlenecks.</p>
             <div class="btns">
                 <a href="mailto:princeardiabah@gmail.com" class="btn primary">Start a Project</a>
-                <a href="#work" class="btn secondary">View Systems</a>
+                <a href="#work" class="btn secondary">Explore Systems</a>
             </div>
         </div>
         <div class="profile-frame reveal active">
@@ -209,69 +113,115 @@ nav {
         </div>
     </header>
 
-    <section id="work">
-        <h2 style="font-size: 2.5rem; margin-bottom: 48px; font-weight: 800;">Selected Systems</h2>
-        <div class="bento">
-            
-            <div class="item item-large reveal">
-                <i data-lucide="blocks"></i>
-                <h3>Rapid Branding Architecture</h3>
-                <p>Designed a Figma-based automation process that streamlines startup branding from discovery to deployment. Scaled for teams in North Rhine-Westphalia, Germany.</p>
-                <div class="mockup" style="background: url('https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000') center/cover;"></div>
-            </div>
+    <div class="stats-bar reveal">
+        <div class="stat-item">
+            <h2 class="counter" data-target="25">0</h2>
+            <p>Workflows Built</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter" data-target="19">0</h2>
+            <p>Live Systems</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter" data-target="7">0</h2>
+            <p>Countries Served</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter" data-target="500">0</h2>
+            <p>Daily Events</p>
+        </div>
+    </div>
 
+    <section id="work">
+        <h2 style="font-size: 2rem; margin-bottom: 40px; font-weight: 800;">Featured Architectures</h2>
+        <div class="bento">
+            <div class="item item-large reveal">
+                <i data-lucide="shield-alert"></i>
+                <h3>Autonomous Reputation Sentry</h3>
+                <p>A global listening system that monitors brand sentiment across social platforms. It autonomously determines if mentions are critical, neutral, or positive, instantly triggering crisis alerts or engagement opportunities for owners.</p>
+            </div>
+            <div class="item reveal">
+                <i data-lucide="trending-up"></i>
+                <h3>Market Intelligence</h3>
+                <p>Regional registry listeners that detect new business entries in real-time, delivering automated competitor analysis to leadership teams.</p>
+            </div>
             <div class="item reveal">
                 <i data-lucide="users"></i>
-                <h3>ASC Ecosystem</h3>
-                <p>Leading the digital infrastructure for Africa Student Connect, bridging the gap between talent and mentorship across the continent.</p>
-            </div>
-
-            <div class="item reveal">
-                <i data-lucide="cpu"></i>
-                <h3>AI Automations</h3>
-                <p>Deploying custom LLM pipelines to handle internal documentation and customer support friction.</p>
-            </div>
-
-            <div class="item item-large reveal">
-                <i data-lucide="layout"></i>
-                <h3>Strategic Marketing</h3>
-                <p>Combining data-driven marketing with AI tools to build loyal tribes around emerging startups.</p>
-                <div class="mockup" style="background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000') center/cover;"></div>
+                <h3>Autonomous HR Pipeline</h3>
+                <p>A 24/7 recruitment machine that scrapes, scores, and synchronizes talent profiles directly into internal data tables.</p>
             </div>
         </div>
     </section>
 
-    <section id="services" class="reveal">
-        <div class="item item-full">
-            <div>
-                <h3>Have a workflow problem?</h3>
-                <p>I design the systems that remove friction and surface intelligence.</p>
+    <section id="sectors" style="margin-top: 100px;">
+        <h2 style="font-size: 2rem; margin-bottom: 10px; font-weight: 800;">Cross-Sector Solutions</h2>
+        <p style="color: var(--text-dim); margin-bottom: 40px;">How my "Systems First" approach solves specific industry friction:</p>
+        
+        <div class="sector-grid">
+            <div class="sector-card reveal">
+                <h4>Real Estate & Property</h4>
+                <ul>
+                    <li>Automated cross-platform listing synchronization</li>
+                    <li>Online management workflows for remote property leads</li>
+                    <li>Tenant communication & auto-booking responders</li>
+                </ul>
             </div>
-            <a href="mailto:princeardiabah@gmail.com" class="btn primary">Get in touch</a>
+            <div class="sector-card reveal">
+                <h4>E-commerce & Brands</h4>
+                <ul>
+                    <li>Inventory-to-Sales-Alert automated bridges</li>
+                    <li>Dynamic customer sentiment tracking for PR teams</li>
+                    <li>Automated influencer & competitor scouting</li>
+                </ul>
+            </div>
+            <div class="sector-card reveal">
+                <h4>HR & Talent Acquisition</h4>
+                <ul>
+                    <li>Zero-manual-entry candidate sourcing systems</li>
+                    <li>Automated qualification scoring & notification</li>
+                    <li>Cross-continental data integrity for global hires</li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <footer style="padding: 80px 0 40px; text-align: center; color: var(--text-dim); font-size: 14px;">
-        &copy; 2026 Prince Ardiabah · Business Strategist & Youth Mentor
+    <footer style="padding: 100px 0 50px; text-align: center; color: var(--text-dim); font-size: 13px; border-top: 1px solid var(--glass-border); margin-top: 100px;">
+        &copy; 2026 Prince Ardiabah · Global AI Automation Lead
     </footer>
 </div>
 
 <script>
-// Initialize Icons
 lucide.createIcons();
+const counters = document.querySelectorAll('.counter');
+const speed = 200;
 
-// Scroll Reveal Logic
-const observerOptions = { threshold: 0.15 };
+const startCounters = () => {
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const inc = target / speed;
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 1);
+            } else {
+                counter.innerText = target + (target >= 500 ? '+' : '');
+            }
+        };
+        updateCount();
+    });
+};
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
+            if(entry.target.classList.contains('stats-bar')) startCounters();
         }
     });
-}, observerOptions);
+}, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
