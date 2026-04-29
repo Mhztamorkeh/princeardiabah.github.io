@@ -1,163 +1,295 @@
-<!-- ONLY SHOWING MODIFIED/IMPORTANT SECTIONS -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Prince Ardiabah — Systems Architect</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-/* ===== ENHANCED FLOW BACKGROUND ===== */
-.flow-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-    background: radial-gradient(circle at 50% -20%, #2e1065 0%, transparent 45%);
+:root{
+--bg:#02010a;
+--panel:rgba(255,255,255,0.03);
+--accent:#8b5cf6;
+--text:#f9fafb;
+--dim:#9ca3af;
+--border:rgba(255,255,255,0.06);
 }
 
-.schematic {
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background-image: url("data:image/svg+xml,%3Csvg width='800' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%238b5cf6' stroke-width='1' stroke-opacity='0.25' fill='none'%3E%3Cpath d='M0 100 C200 200 400 0 600 100 S1000 200 1200 100'/%3E%3Cpath d='M0 300 C200 400 400 200 600 300 S1000 400 1200 300'/%3E%3Ccircle cx='200' cy='200' r='4'/%3E%3Ccircle cx='600' cy='300' r='4'/%3E%3C/g%3E%3C/svg%3E");
-    animation: flowMove 30s linear infinite;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Inter;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+/* ===== FLOW BACKGROUND ===== */
+.flow{
+position:fixed;inset:0;z-index:-1;
+background:
+radial-gradient(circle at 20% 20%, rgba(139,92,246,0.15), transparent 40%),
+radial-gradient(circle at 80% 80%, rgba(139,92,246,0.1), transparent 40%);
 }
 
-@keyframes flowMove {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+/* moving lines */
+.flow::after{
+content:"";
+position:absolute;
+width:200%;height:200%;
+background-image:
+linear-gradient(rgba(139,92,246,0.2) 1px, transparent 1px),
+linear-gradient(90deg, rgba(139,92,246,0.2) 1px, transparent 1px);
+background-size:120px 120px;
+animation:move 40s linear infinite;
+}
+@keyframes move{
+0%{transform:translate(0,0);}
+100%{transform:translate(-200px,-200px);}
 }
 
-/* glowing nodes */
-.schematic::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle, rgba(139,92,246,0.15) 1px, transparent 1px);
-    background-size: 120px 120px;
-    animation: pulseGlow 4s ease-in-out infinite;
+/* NAV */
+nav{
+display:flex;justify-content:space-between;
+padding:20px 5%;
+position:sticky;top:0;
+background:rgba(2,1,10,0.6);
+backdrop-filter:blur(10px);
+border-bottom:1px solid var(--border);
 }
 
-@keyframes pulseGlow {
-    0%,100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
+nav a{color:var(--dim);text-decoration:none;margin-left:20px;}
+nav a:hover{color:var(--accent);}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:0 20px;
 }
 
-
-/* ===== CASE STUDY CONTAINERS ===== */
-.case-study {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 28px;
-    padding: 40px;
-    margin-bottom: 40px;
-    backdrop-filter: blur(10px);
+.hero h1{
+font-size:clamp(40px,8vw,80px);
+font-family:'Space Grotesk';
 }
 
-.case-left h3 {
-    font-family: 'Space Grotesk';
-    font-size: 1.8rem;
-    margin-bottom: 10px;
+.hero p{color:var(--dim);max-width:600px;margin:20px 0;}
+
+.btn{
+background:var(--accent);
+padding:15px 30px;
+border-radius:10px;
+text-decoration:none;
+color:white;
+font-weight:700;
 }
 
-.case-problem {
-    color: var(--text-dim);
-    margin-bottom: 10px;
+/* SCROLL STORY */
+.section{
+padding:120px 10%;
 }
 
-.case-build {
-    font-weight: 600;
-    margin-bottom: 20px;
+.split{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
 }
 
-.case-right {
-    border: 1px dashed var(--border);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-dim);
-    font-size: 0.9rem;
+.panel{
+background:var(--panel);
+border:1px solid var(--border);
+padding:40px;
+border-radius:24px;
 }
 
-/* responsive */
+/* BEFORE AFTER */
+.compare{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.before,.after{
+padding:25px;
+border-radius:20px;
+}
+
+.before{background:rgba(255,0,0,0.05);}
+.after{background:rgba(16,185,129,0.05);}
+
+/* CASE STUDY */
+.case{
+margin-bottom:60px;
+display:grid;
+grid-template-columns:1.2fr 1fr;
+gap:40px;
+padding:40px;
+border-radius:28px;
+border:1px solid var(--border);
+background:var(--panel);
+}
+
+.visual{
+border-radius:20px;
+border:1px dashed var(--border);
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+overflow:hidden;
+}
+
+/* animated flow inside case */
+.visual::after{
+content:"";
+position:absolute;
+width:200%;
+height:200%;
+background:radial-gradient(circle, rgba(139,92,246,0.2) 2px, transparent 2px);
+background-size:60px 60px;
+animation:flow 6s linear infinite;
+}
+
+@keyframes flow{
+0%{transform:translate(0,0);}
+100%{transform:translate(-60px,-60px);}
+}
+
+/* TECH STACK */
+.tech{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:20px;
+}
+.tech span{
+border:1px solid var(--border);
+padding:8px 14px;
+border-radius:10px;
+}
+
+/* SECTORS */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+}
+
+.card{
+padding:30px;
+border-radius:20px;
+background:var(--panel);
+border:1px solid var(--border);
+text-align:center;
+}
+
+footer{
+text-align:center;
+padding:100px 20px;
+border-top:1px solid var(--border);
+}
+
 @media(max-width:900px){
-    .case-study { grid-template-columns: 1fr; }
+.split,.case{grid-template-columns:1fr;}
 }
 </style>
+</head>
 
+<body>
 
-<!-- ===== MOVE TECH STACK HERE (AFTER ABOUT SECTION) ===== -->
-<section class="tech-stack-section">
-    <span class="tech-label">TECHNOLOGY & INFRASTRUCTURE</span>
-    <div class="tech-grid">
-        <div class="tech-tag">n8n</div>
-        <div class="tech-tag">Make</div>
-        <div class="tech-tag">Zapier</div>
-        <div class="tech-tag">OpenAI</div>
-        <div class="tech-tag">Groq</div>
-        <div class="tech-tag">Whisper</div>
-        <div class="tech-tag">Supabase</div>
-        <div class="tech-tag">Airtable</div>
-        <div class="tech-tag">Webhooks</div>
-        <div class="tech-tag" style="border-color:var(--accent)">Diamond Flow Logic</div>
-    </div>
+<div class="flow"></div>
+
+<nav>
+<div><b>PRINCE ARDIABAH</b></div>
+<div>
+<a href="#systems">Systems</a>
+<a href="#sectors">Sectors</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<h1>Building the <span style="color:#8b5cf6">Autonomous Future</span></h1>
+<p>I engineer AI systems that remove bottlenecks and unlock revenue.</p>
+<a href="#systems" class="btn">Explore Systems</a>
 </section>
 
+<!-- STORY -->
+<section class="section split">
+<div>
+<h2>Strategy → Systems → Scale</h2>
+<p>You don’t need more tools. You need systems that think.</p>
+</div>
 
-<!-- ===== REBUILT REAL SYSTEMS SECTION ===== -->
-<section id="projects" style="padding:100px 0;">
-    <div style="text-align:center; margin-bottom:60px;">
-        <h2 style="font-family:'Space Grotesk'; font-size:2.8rem;">
-            Real Systems. Real Impact.
-        </h2>
-    </div>
-
-    <!-- CASE 1 -->
-    <div class="case-study">
-        <div class="case-left">
-            <span class="badge type">Hospitality</span>
-            <h3>Digital Hotel Agent</h3>
-            <p class="case-problem">
-                <b>The Problem:</b> Lost revenue due to delayed responses outside business hours.
-            </p>
-            <p class="case-build">
-                <b>The Build:</b> Conversational AI handling concierge requests and automating upsells 24/7.
-            </p>
-            <div class="stack-row">
-                <span class="stack-item">RAG LLM</span>
-                <span class="stack-item">n8n</span>
-            </div>
-        </div>
-        <div class="case-right">Conversation Logic</div>
-    </div>
-
-    <!-- CASE 2 -->
-    <div class="case-study">
-        <div class="case-left">
-            <span class="badge type">Public Services</span>
-            <h3>Public Citizen Portal</h3>
-            <p class="case-problem">
-                <b>The Problem:</b> Service requests bottlenecked by manual processing.
-            </p>
-            <p class="case-build">
-                <b>The Build:</b> Automated portal with tracking + status updates.
-            </p>
-            <div class="stack-row">
-                <span class="stack-item">n8n</span>
-                <span class="stack-item">Portal Logic</span>
-            </div>
-        </div>
-        <div class="case-right">System Flow</div>
-    </div>
-
-    <!-- KEEP ADDING YOUR OTHER SYSTEMS SAME STRUCTURE -->
+<div class="panel">
+<div class="compare">
+<div class="before">
+<h4>Before</h4>
+<p>Manual ops, slow responses, lost revenue</p>
+</div>
+<div class="after">
+<h4>After</h4>
+<p>Automated flows, instant response, 24/7 revenue</p>
+</div>
+</div>
+</div>
 </section>
 
+<!-- TECH -->
+<section class="section">
+<h2>Technology Infrastructure</h2>
+<div class="tech">
+<span>n8n</span>
+<span>OpenAI</span>
+<span>Groq</span>
+<span>Supabase</span>
+<span>Webhooks</span>
+<span>Airtable</span>
+</div>
+</section>
 
-<script>
-/* smoother parallax glow */
-window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    document.querySelector('.schematic').style.transform =
-        `translateX(${-y * 0.05}px) translateY(${y * 0.05}px)`;
-});
-</script>
+<!-- SYSTEMS -->
+<section id="systems" class="section">
+<h2>Real Systems. Real Impact.</h2>
+
+<div class="case">
+<div>
+<h3>Digital Hotel Agent</h3>
+<p><b>Problem:</b> Lost revenue due to delayed responses.</p>
+<p><b>Build:</b> AI concierge handling bookings + upsells 24/7.</p>
+</div>
+<div class="visual">Live System Flow</div>
+</div>
+
+<div class="case">
+<div>
+<h3>Public Citizen Portal</h3>
+<p><b>Problem:</b> Manual processing bottlenecks.</p>
+<p><b>Build:</b> Automated tracking & request handling system.</p>
+</div>
+<div class="visual">Automation Pipeline</div>
+</div>
+
+</section>
+
+<!-- SECTORS -->
+<section id="sectors" class="section">
+<h2>Industries</h2>
+<div class="grid">
+<div class="card">Fintech</div>
+<div class="card">Healthcare</div>
+<div class="card">Logistics</div>
+<div class="card">Education</div>
+<div class="card">Public Services</div>
+</div>
+</section>
+
+<footer>
+<h2>Ready to Scale?</h2>
+<p>Let’s build your system.</p>
+<a href="mailto:princeardiabah@gmail.com" class="btn">Contact Me</a>
+</footer>
+
+</body>
+</html>
