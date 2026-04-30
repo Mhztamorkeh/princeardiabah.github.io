@@ -15,14 +15,17 @@
             --bg: #04030b;
             --bg-2: #080713;
             --panel: rgba(255, 255, 255, 0.035);
+            --panel-strong: rgba(255, 255, 255, 0.065);
             --line: rgba(255, 255, 255, 0.1);
             --line-strong: rgba(255, 255, 255, 0.18);
             --text: #f7f7fb;
             --muted: #aaa6ba;
             --soft: #d6d1df;
+            --purple: #8b5cf6;
             --violet: #a78bfa;
             --orange: #ff7a45;
             --green: #22c55e;
+            --cyan: #38bdf8;
             --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
         }
 
@@ -89,7 +92,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 24px;
+            gap: 18px;
             padding: 18px 0;
             border-bottom: 1px solid var(--line);
             backdrop-filter: blur(18px);
@@ -134,12 +137,12 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 10px;
         }
 
         .nav-links a {
             color: var(--muted);
-            font-size: 0.77rem;
+            font-size: 0.68rem;
             font-weight: 700;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -148,6 +151,32 @@
 
         .nav-links a:hover {
             color: var(--text);
+        }
+
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 34px;
+            padding: 0 10px;
+            border: 1px solid rgba(34, 197, 94, 0.32);
+            border-radius: 999px;
+            background: rgba(34, 197, 94, 0.08);
+            color: #bff7d0;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .availability::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
         }
 
         .hero {
@@ -159,8 +188,8 @@
 
         .hero-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.78fr);
-            gap: 64px;
+            grid-template-columns: minmax(0, 1fr) minmax(380px, 0.78fr);
+            gap: clamp(40px, 6vw, 76px);
             align-items: center;
         }
 
@@ -203,7 +232,7 @@
         }
 
         h1 {
-            max-width: 900px;
+            max-width: 860px;
             font-size: clamp(3.25rem, 7vw, 6.75rem);
             line-height: 0.94;
             margin-bottom: 28px;
@@ -213,8 +242,12 @@
             color: var(--violet);
         }
 
+        .hero h1 .accent {
+            display: block;
+        }
+
         .hero-copy {
-            max-width: 720px;
+            max-width: 660px;
             color: var(--soft);
             font-size: clamp(1.04rem, 2vw, 1.24rem);
             margin-bottom: 34px;
@@ -357,16 +390,16 @@
         }
 
         .section {
-            padding: 104px 0;
+            padding: clamp(76px, 9vw, 112px) 0;
             border-top: 1px solid var(--line);
         }
 
         .section-head {
-            display: flex;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
+            gap: clamp(22px, 4vw, 48px);
             align-items: end;
-            justify-content: space-between;
-            gap: 24px;
-            margin-bottom: 38px;
+            margin-bottom: 42px;
         }
 
         .section-kicker {
@@ -382,26 +415,136 @@
         .section h2 {
             max-width: 760px;
             font-size: clamp(2.15rem, 4vw, 4.25rem);
-            line-height: 1;
+            line-height: 1.02;
         }
 
         .section-lede {
             max-width: 510px;
             color: var(--muted);
+            justify-self: end;
+            padding-bottom: 4px;
+            font-size: 0.98rem;
+        }
+
+        .proof-band {
+            padding: 28px 0 58px;
+        }
+
+        .proof-band .stats {
+            margin-top: 0;
+            max-width: none;
+        }
+
+        .build-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--line);
+        }
+
+        .build-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 190px;
+            padding: 24px;
+            background: rgba(6, 5, 16, 0.9);
+        }
+
+        .build-card i {
+            color: var(--orange);
+            margin-bottom: 18px;
+        }
+
+        .build-card h3 {
+            font-size: 1.08rem;
+            margin-bottom: 10px;
+            line-height: 1.15;
+        }
+
+        .build-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--line);
+        }
+
+        .process-step {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 212px;
+            padding: 24px;
+            background: rgba(6, 5, 16, 0.92);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 122, 69, 0.45);
+            border-radius: 50%;
+            color: var(--orange);
+            font-weight: 800;
+            font-size: 0.78rem;
+        }
+
+        .process-step h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            line-height: 1.15;
+        }
+
+        .process-step p {
+            color: var(--muted);
+            font-size: 0.86rem;
+            line-height: 1.5;
         }
 
         .about-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) 360px;
-            gap: 42px;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 370px);
+            gap: clamp(32px, 5vw, 56px);
             align-items: start;
         }
 
         .about-copy {
             display: grid;
-            gap: 18px;
+            gap: 16px;
+            max-width: 760px;
             color: var(--soft);
             font-size: 1.02rem;
+        }
+
+        .about-more {
+            display: grid;
+            gap: 16px;
+        }
+
+        .about-more[hidden] {
+            display: none;
+        }
+
+        .read-more {
+            width: fit-content;
+            margin-top: 6px;
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            background: rgba(139, 92, 246, 0.08);
+            color: var(--text);
+            cursor: pointer;
         }
 
         .about-copy p:first-child {
@@ -466,13 +609,14 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 14px;
-            margin-top: 36px;
+            margin-top: 34px;
+            max-width: 860px;
         }
 
         .stat {
             border: 1px solid var(--line);
             border-radius: 8px;
-            padding: 22px;
+            padding: 22px 18px;
             background: rgba(255, 255, 255, 0.035);
         }
 
@@ -492,6 +636,105 @@
             font-weight: 800;
             letter-spacing: 0.1em;
             text-transform: uppercase;
+            line-height: 1.25;
+        }
+
+        .media-card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+                rgba(6, 5, 16, 0.9);
+            overflow: hidden;
+        }
+
+        .flag {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            font-size: 1.35rem;
+        }
+
+        .footprint-pill {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 16px 18px;
+            border-top: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .footprint-pill .flag {
+            width: 36px;
+            height: 28px;
+            font-size: 1.15rem;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .media-card {
+            min-height: 260px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .media-preview {
+            position: relative;
+            min-height: 166px;
+            border-bottom: 1px solid var(--line);
+            background:
+                radial-gradient(circle at 28% 26%, rgba(255, 122, 69, 0.14), transparent 8rem),
+                linear-gradient(to right, rgba(255,255,255,0.055) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.055) 1px, transparent 1px),
+                #070513;
+            background-size: auto, 26px 26px, 26px 26px, auto;
+        }
+
+        .media-preview::after {
+            content: "";
+            position: absolute;
+            inset: 28px;
+            border: 1px dashed rgba(167, 139, 250, 0.42);
+            border-radius: 8px;
+        }
+
+        .media-play {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 2;
+            transform: translate(-50%, -50%);
+            display: grid;
+            place-items: center;
+            width: 54px;
+            height: 54px;
+            border: 1px solid rgba(255, 122, 69, 0.6);
+            border-radius: 50%;
+            background: rgba(255, 122, 69, 0.14);
+            color: var(--orange);
+        }
+
+        .media-body {
+            padding: 18px;
+        }
+
+        .media-body h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .media-body p {
+            color: var(--muted);
+            font-size: 0.86rem;
+            line-height: 1.5;
         }
 
         .sectors-grid {
@@ -504,6 +747,8 @@
         }
 
         .sector-card {
+            display: flex;
+            flex-direction: column;
             min-height: 178px;
             padding: 24px;
             background: rgba(6, 5, 16, 0.9);
@@ -523,6 +768,7 @@
         .sector-card h3 {
             font-size: 1.02rem;
             margin-bottom: 8px;
+            line-height: 1.15;
         }
 
         .sector-card p {
@@ -540,7 +786,7 @@
             display: grid;
             grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
             gap: 34px;
-            align-items: center;
+            align-items: stretch;
             min-height: 420px;
             padding: 30px;
             border: 1px solid var(--line);
@@ -549,6 +795,18 @@
                 linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
                 rgba(5, 4, 14, 0.72);
             box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
+        }
+
+        .case-study.featured {
+            border-color: rgba(255, 122, 69, 0.38);
+            background:
+                linear-gradient(135deg, rgba(255, 122, 69, 0.08), rgba(139, 92, 246, 0.06)),
+                rgba(5, 4, 14, 0.78);
+        }
+
+        .case-study.featured .case-meta::before {
+            content: "Featured · ";
+            color: #f7f7fb;
         }
 
         .case-study:nth-child(even) {
@@ -571,17 +829,27 @@
             font-weight: 800;
             letter-spacing: 0.12em;
             text-transform: uppercase;
+            line-height: 1.25;
+        }
+
+        .case-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 620px;
+            padding: 6px 0;
         }
 
         .case-content h3 {
             font-size: clamp(1.75rem, 3vw, 2.5rem);
-            line-height: 1.06;
+            line-height: 1.08;
             margin-bottom: 18px;
         }
 
         .case-content p {
             color: var(--muted);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            max-width: 58ch;
         }
 
         .case-content b {
@@ -592,7 +860,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 22px;
+            margin-top: 18px;
         }
 
         .stack-tag {
@@ -610,6 +878,8 @@
 
         .workflow-card {
             position: relative;
+            align-self: stretch;
+            min-width: 0;
             min-height: 338px;
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 8px;
@@ -646,6 +916,7 @@
             font-size: 0.76rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
+            line-height: 1.2;
         }
 
         .workflow-topbar span {
@@ -698,6 +969,36 @@
         .mini-node.output { right: 30px; bottom: 22px; }
         .mini-node.data { left: 24px; bottom: 38px; }
 
+        .workflow-canvas[data-pattern="linear"] .mini-node.source { left: 0; top: 118px; }
+        .workflow-canvas[data-pattern="linear"] .mini-node.logic { left: 26%; top: 118px; transform: none; }
+        .workflow-canvas[data-pattern="linear"] .mini-node.ai { left: 52%; top: 118px; right: auto; transform: none; }
+        .workflow-canvas[data-pattern="linear"] .mini-node.data { left: 26%; bottom: 22px; }
+        .workflow-canvas[data-pattern="linear"] .mini-node.output { right: 0; bottom: 82px; transform: none; }
+
+        .workflow-canvas[data-pattern="hub"] .mini-node.source { left: 0; top: 24px; }
+        .workflow-canvas[data-pattern="hub"] .mini-node.logic { left: 50%; top: 112px; transform: translateX(-50%); }
+        .workflow-canvas[data-pattern="hub"] .mini-node.ai { right: 0; top: 24px; transform: none; }
+        .workflow-canvas[data-pattern="hub"] .mini-node.data { left: 0; bottom: 24px; }
+        .workflow-canvas[data-pattern="hub"] .mini-node.output { right: 0; bottom: 24px; transform: none; }
+
+        .workflow-canvas[data-pattern="loop"] .mini-node.source { left: 30px; top: 26px; }
+        .workflow-canvas[data-pattern="loop"] .mini-node.logic { right: 34px; top: 32px; left: auto; transform: none; }
+        .workflow-canvas[data-pattern="loop"] .mini-node.ai { right: 34px; bottom: 34px; top: auto; transform: none; }
+        .workflow-canvas[data-pattern="loop"] .mini-node.data { left: 30px; bottom: 34px; }
+        .workflow-canvas[data-pattern="loop"] .mini-node.output { left: 50%; top: 112px; right: auto; bottom: auto; transform: translateX(-50%); }
+
+        .workflow-canvas[data-pattern="split"] .mini-node.source { left: 0; top: 112px; }
+        .workflow-canvas[data-pattern="split"] .mini-node.logic { left: 39%; top: 112px; transform: translateX(-50%); }
+        .workflow-canvas[data-pattern="split"] .mini-node.ai { right: 0; top: 24px; transform: none; }
+        .workflow-canvas[data-pattern="split"] .mini-node.data { right: 0; left: auto; bottom: 24px; }
+        .workflow-canvas[data-pattern="split"] .mini-node.output { left: 39%; right: auto; bottom: 18px; transform: none; }
+
+        .workflow-canvas[data-pattern="stack"] .mini-node.source { left: 0; top: 20px; }
+        .workflow-canvas[data-pattern="stack"] .mini-node.logic { left: 0; top: 112px; transform: none; }
+        .workflow-canvas[data-pattern="stack"] .mini-node.ai { right: 0; top: 66px; transform: none; }
+        .workflow-canvas[data-pattern="stack"] .mini-node.data { right: 0; left: auto; bottom: 38px; }
+        .workflow-canvas[data-pattern="stack"] .mini-node.output { left: 0; right: auto; bottom: 18px; transform: none; }
+
         .workflow-canvas .lines {
             position: absolute;
             inset: 0;
@@ -740,10 +1041,17 @@
 
         @media (max-width: 1040px) {
             .hero-grid,
+            .section-head,
             .about-grid,
             .case-study,
             .case-study:nth-child(even) {
                 grid-template-columns: 1fr;
+            }
+
+            .section-lede {
+                justify-self: start;
+                max-width: 720px;
+                padding-bottom: 0;
             }
 
             .case-study:nth-child(even) .case-content,
@@ -751,17 +1059,34 @@
                 order: initial;
             }
 
+            .case-content {
+                max-width: 760px;
+            }
+
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+
             .orbit-panel {
                 min-height: 470px;
             }
 
             .stats,
-            .sectors-grid {
+            .sectors-grid,
+            .build-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
             .insight-panel {
                 position: static;
+            }
+
+            .availability {
+                display: none;
             }
         }
 
@@ -778,8 +1103,21 @@
                 display: none;
             }
 
+            .availability {
+                display: none;
+            }
+
             .hero {
                 padding-top: 54px;
+                text-align: center;
+            }
+
+            h1 {
+                max-width: 560px;
+                margin-left: auto;
+                margin-right: auto;
+                font-size: clamp(2.7rem, 14vw, 4.1rem);
+                line-height: 1.02;
             }
 
             .hero-grid {
@@ -788,6 +1126,18 @@
 
             .hero-actions {
                 display: grid;
+                justify-content: stretch;
+            }
+
+            .eyebrow {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 100%;
+            }
+
+            .hero-copy {
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .orbit-panel,
@@ -821,20 +1171,49 @@
             }
 
             .section-head {
-                display: block;
+                display: grid;
+                gap: 18px;
+                margin-bottom: 30px;
             }
 
             .section-lede {
-                margin-top: 18px;
+                margin-top: 0;
+                font-size: 0.94rem;
             }
 
             .stats,
-            .sectors-grid {
+            .sectors-grid,
+            .build-grid,
+            .process-grid,
+            .media-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .proof-band {
+                padding: 18px 0 42px;
             }
 
             .case-study {
                 padding: 18px;
+                gap: 22px;
+            }
+
+            .case-content {
+                padding: 0;
+            }
+
+            .case-content h3 {
+                margin-bottom: 14px;
+            }
+
+            .case-content p {
+                font-size: 0.94rem;
+                line-height: 1.55;
+            }
+
+            .stack-tag {
+                min-height: 28px;
+                font-size: 0.68rem;
             }
         }
     </style>
@@ -851,22 +1230,26 @@
             </a>
 
             <div class="nav-links">
+                <a href="#build">Build</a>
+                <a href="#process">Process</a>
                 <a href="#about">About</a>
-                <a href="#sectors">Sectors</a>
-                <a href="#projects">Systems</a>
+                <a href="#sectors">Industries</a>
+                <a href="#projects">Projects</a>
+                <a href="#media">Media</a>
                 <a href="#contact">Contact</a>
             </div>
+            <a class="availability" href="#contact">Open to Projects</a>
         </nav>
 
         <header class="hero">
             <div class="hero-grid">
                 <div>
                     <div class="eyebrow"><span class="pulse"></span> 25+ autonomous workflows live</div>
-                    <h1>AI automation for businesses ready to <span class="accent">scale without friction</span>.</h1>
-                    <p class="hero-copy">I design end-to-end automation systems that connect strategy, operations, sales, and delivery into reliable workflows built around real business outcomes.</p>
+                    <h1>Building Automations for <span class="accent">Complex Systems.</span></h1>
+                    <p class="hero-copy">I don’t just connect tools. I design the systems businesses actually run on: AI workflows, data pipelines, and operating logic built around real outcomes.</p>
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="#projects">Explore Systems <i data-lucide="arrow-right"></i></a>
-                        <a class="btn" href="#contact">Start a Strategic Sync <i data-lucide="calendar"></i></a>
+                        <a class="btn btn-primary" href="#projects">Explore Projects <i data-lucide="arrow-right"></i></a>
+                        <a class="btn" href="#contact">Initiate Strategic Sync <i data-lucide="calendar"></i></a>
                     </div>
                 </div>
 
@@ -893,31 +1276,70 @@
         </header>
 
         <main>
+            <section class="proof-band" aria-label="Impact stats">
+                <div class="stats" id="stats">
+                    <div class="stat"><strong class="counter" data-target="25">0</strong><span>Workflows Live</span></div>
+                    <div class="stat"><strong class="counter" data-target="10">0</strong><span>Sectors Optimized</span></div>
+                    <div class="stat"><strong class="counter" data-target="7">0</strong><span>Global Markets</span></div>
+                    <div class="stat"><strong class="counter" data-target="11361">0</strong><span>LinkedIn Reach</span></div>
+                </div>
+            </section>
+
+            <section class="section" id="build">
+                <div class="section-head">
+                    <div>
+                        <span class="section-kicker">What I Build</span>
+                        <h2>Automation systems that remove the hidden drag inside growing teams.</h2>
+                    </div>
+                    <p class="section-lede">I focus on practical systems that connect the tools businesses already use, then add AI, logic, data, and routing where they create real leverage.</p>
+                </div>
+
+                <div class="build-grid">
+                    <div class="build-card"><i data-lucide="bot"></i><h3>AI Agents & Assistants</h3><p>Conversational systems that answer questions, process context, trigger actions, and reduce internal dependency on manual updates.</p></div>
+                    <div class="build-card"><i data-lucide="workflow"></i><h3>n8n Workflow Engines</h3><p>End-to-end automations for sales, operations, onboarding, content, recruitment, reporting, and internal delivery workflows.</p></div>
+                    <div class="build-card"><i data-lucide="database-zap"></i><h3>Data Pipelines</h3><p>Scrapers, syncs, structured databases, spreadsheet updates, and clean operational tables teams can actually trust.</p></div>
+                    <div class="build-card"><i data-lucide="file-search"></i><h3>Intelligence Systems</h3><p>Business audits, meeting intelligence, candidate scoring, link aggregation, and decision support built around structured outputs.</p></div>
+                    <div class="build-card"><i data-lucide="plug-zap"></i><h3>Tool Integrations</h3><p>Microsoft Teams, Supabase, Excel, email, webhooks, LLMs, and APIs connected into one reliable operating flow.</p></div>
+                    <div class="build-card"><i data-lucide="chart-no-axes-combined"></i><h3>Operational Scale</h3><p>Systems designed to reduce repetitive work, improve visibility, speed up execution, and help teams grow without breaking.</p></div>
+                </div>
+            </section>
+
+            <section class="section" id="process">
+                <div class="section-head">
+                    <div>
+                        <span class="section-kicker">How I Work</span>
+                        <h2>From messy workflow to reliable operating system.</h2>
+                    </div>
+                    <p class="section-lede">My process starts with business reality before tools. The goal is not to automate everything, but to automate the points where leverage is highest.</p>
+                </div>
+
+                <div class="process-grid">
+                    <div class="process-step"><span class="step-number">01</span><h3>Map the Work</h3><p>Understand how information, decisions, people, and tools currently move through the business.</p></div>
+                    <div class="process-step"><span class="step-number">02</span><h3>Find the Bottleneck</h3><p>Identify where time is lost, context breaks, handoffs fail, or teams depend too much on manual follow-up.</p></div>
+                    <div class="process-step"><span class="step-number">03</span><h3>Design the System</h3><p>Define the triggers, logic, data sources, AI layers, human approvals, and outputs before building.</p></div>
+                    <div class="process-step"><span class="step-number">04</span><h3>Build & Test</h3><p>Implement the workflow, test edge cases, clean the output, and make the automation usable for real teams.</p></div>
+                    <div class="process-step"><span class="step-number">05</span><h3>Improve the Engine</h3><p>Monitor what happens after launch, then refine the workflow so it becomes more reliable over time.</p></div>
+                </div>
+            </section>
+
             <section class="section" id="about">
                 <div class="section-head">
                     <div>
                         <span class="section-kicker">About</span>
-                        <h2>Strategy-minded automation for businesses that need systems, not scattered tools.</h2>
+                        <h2>Strategy first. Systems always.</h2>
                     </div>
-                    <p class="section-lede">The strongest part of your current concept is the positioning: you are not presenting yourself as just a builder, but as someone who understands how work actually moves through a business.</p>
                 </div>
 
                 <div class="about-grid">
                     <div>
                         <div class="about-copy">
-                            <p>I’m an AI automation specialist focused on designing systems that help businesses operate, scale, and deliver with far less friction. My work centers on building end-to-end workflows that replace manual effort, reduce operational complexity, and turn scattered processes into structured, reliable systems.</p>
-                            <p>What differentiates my approach is that I don’t come at automation purely from a technical lens. My background across strategy, consulting, and early-stage ecosystems, spanning Germany, the United Kingdom, the United States, Canada, Ghana, and China, means I understand how businesses actually function: where decisions break down, where teams get stuck, and where growth quietly stalls behind the scenes.</p>
-                            <p>That perspective shapes how I design automation. I don’t just connect tools or deploy AI models. I map entire workflows, identify leverage points, and build systems that align with real business objectives. The result is automation that works commercially, supporting revenue, improving delivery speed, and helping teams scale without unnecessary complexity.</p>
-                            <p>At RapidWorks UG, I design and implement AI-driven systems that connect marketing, sales, and operations into cohesive automated engines. From integrating LLMs and no-code tools to redesigning internal workflows, my focus is on reducing dependency on constant human intervention and creating consistent, repeatable outcomes.</p>
-                            <p>Beyond commercial work, I apply the same automation and systems thinking to social impact through initiatives like Digital Bridge Ghana and Room_99, where the goal is to equip young people with practical, future-facing skills and create structured pathways for real-world problem solving.</p>
-                            <p>I don’t just build automations. I design the systems that make businesses run better, with less effort, more clarity, and the ability to scale without breaking.</p>
-                        </div>
-
-                        <div class="stats" id="stats">
-                            <div class="stat"><strong class="counter" data-target="25">0</strong><span>Workflows Live</span></div>
-                            <div class="stat"><strong class="counter" data-target="10">0</strong><span>Sectors Optimized</span></div>
-                            <div class="stat"><strong class="counter" data-target="7">0</strong><span>Global Markets</span></div>
-                            <div class="stat"><strong class="counter" data-target="11361">0</strong><span>Community Reach</span></div>
+                            <p>I’m an AI automation specialist focused on designing systems that help businesses operate, scale, and deliver with far less friction. My work turns scattered processes into structured workflows that reduce manual effort and create repeatable outcomes.</p>
+                            <p>My advantage is that I do not approach automation from a purely technical lens. With experience across strategy, consulting, early-stage ecosystems, and markets including Germany, the United Kingdom, the United States, Canada, Ghana, and China, I understand where teams get stuck and where growth quietly slows down behind the scenes.</p>
+                            <div class="about-more" id="about-more" hidden>
+                                <p>At RapidWorks UG, I design and implement AI-driven systems that connect marketing, sales, operations, data, and internal communication. I map the workflow first, identify the leverage points, then build automations that work commercially, not just technically.</p>
+                                <p>Beyond commercial work, I apply the same systems thinking through Digital Bridge Ghana and Room_99, building structured pathways for young people to learn practical, future-facing skills.</p>
+                            </div>
+                            <button class="btn read-more" type="button" aria-expanded="false" aria-controls="about-more">Read More <i data-lucide="chevron-down"></i></button>
                         </div>
                     </div>
 
@@ -932,6 +1354,14 @@
                             <div class="signal"><i data-lucide="network"></i><div><b>Systems Integration</b><span>Connect marketing, sales, operations, data, and AI into one engine.</span></div></div>
                             <div class="signal"><i data-lucide="globe-2"></i><div><b>Global Context</b><span>Experience across Germany, UK, US, Canada, Ghana, and China.</span></div></div>
                         </div>
+                        <div class="footprint-pill" aria-label="Global footprint countries">
+                            <span class="flag" title="Germany">🇩🇪</span>
+                            <span class="flag" title="Ghana">🇬🇭</span>
+                            <span class="flag" title="United Kingdom">🇬🇧</span>
+                            <span class="flag" title="United States">🇺🇸</span>
+                            <span class="flag" title="Canada">🇨🇦</span>
+                            <span class="flag" title="China">🇨🇳</span>
+                        </div>
                     </aside>
                 </div>
             </section>
@@ -939,10 +1369,10 @@
             <section class="section" id="sectors">
                 <div class="section-head">
                     <div>
-                        <span class="section-kicker">Sectors</span>
-                        <h2>Automation patterns adapted to real operating environments.</h2>
+                        <span class="section-kicker">Industries</span>
+                        <h2>Industries I’m built to automate.</h2>
                     </div>
-                    <p class="section-lede">Your sector range is a strength. I tightened the cards so they read as practical use cases rather than broad categories.</p>
+                    <p class="section-lede">These are the operating environments where my strategy background and automation work come together: messy workflows, fast-moving teams, and businesses that need clearer systems to scale.</p>
                 </div>
 
                 <div class="sectors-grid">
@@ -962,121 +1392,162 @@
             <section class="section" id="projects">
                 <div class="section-head">
                     <div>
-                        <span class="section-kicker">Systems</span>
-                        <h2>Ten workflow concepts, shown as stronger n8n-style automation canvases.</h2>
+                        <span class="section-kicker">Projects</span>
+                        <h2>Automation projects I’ve built for complex business systems.</h2>
                     </div>
-                    <p class="section-lede">I kept your original workflows and made the visual language more concrete: each case now has a living system diagram instead of a placeholder.</p>
+                    <p class="section-lede">A portfolio of AI and n8n-driven workflows built to reduce manual work, connect data, and help teams move faster with more control.</p>
                 </div>
 
                 <div class="case-list">
-                    <article class="case-study">
+                    <article class="case-study featured">
                         <div class="case-content">
-                            <span class="case-meta">Fintech</span>
-                            <h3>Loan Decisioning Engine</h3>
-                            <p><b>The Problem:</b> Manual credit checks took 72 hours, slowing approvals and limiting growth for an SME lender.</p>
-                            <p><b>The Build:</b> An autonomous scoring workflow that cross-references mobile money data, financial APIs, and internal rules to generate instant risk profiles.</p>
-                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">Postgres</span><span class="stack-tag">Risk Rules</span></div>
+                            <span class="case-meta">RapidWorks UG · Germany</span>
+                            <h3>The Oracle — Conversational Database</h3>
+                            <p><b>The Problem:</b> Teams constantly interrupt workflows to ask for updates, availability, and internal context.</p>
+                            <p><b>The Build:</b> A conversational AI layer embedded in Microsoft Teams, connected to internal databases and operational data.</p>
+                            <p><b>The Output:</b> Real-time answers to operational questions via text or voice, delivered instantly.</p>
+                            <p><b>The Result:</b> Eliminates internal communication bottlenecks and reduces dependency on human updates.</p>
+                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">Microsoft Teams</span><span class="stack-tag">Groq / LLM</span></div>
                         </div>
-                        <div class="workflow-card" data-title="Loan Risk Canvas" data-source="Application" data-logic="Score Rules" data-ai="Risk Model" data-data="Postgres" data-output="Approval Queue"></div>
+                        <div class="workflow-card" data-pattern="hub" data-title="Oracle Database Canvas" data-source="Teams Query" data-logic="Context Route" data-ai="Groq / LLM" data-data="Internal DB" data-output="Voice / Text Answer"></div>
+                    </article>
+
+                    <article class="case-study featured">
+                        <div class="case-content">
+                            <span class="case-meta">Multi-Country</span>
+                            <h3>Business Model Analyser</h3>
+                            <p><b>The Problem:</b> Founders operate without clear visibility into what’s working and what’s broken in their business models.</p>
+                            <p><b>The Build:</b> An AI-powered diagnostic system that scrapes websites and evaluates structure, positioning, and performance logic.</p>
+                            <p><b>The Output:</b> Instant, structured audits highlighting strengths, weaknesses, and growth opportunities.</p>
+                            <p><b>The Result:</b> Replaces hours of manual consulting with real-time strategic insight.</p>
+                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">OpenAI</span><span class="stack-tag">Web Scraping</span></div>
+                        </div>
+                        <div class="workflow-card" data-pattern="split" data-title="Business Audit Canvas" data-source="Website URL" data-logic="Scrape + Parse" data-ai="OpenAI Audit" data-data="Model Signals" data-output="Strategy Report"></div>
+                    </article>
+
+                    <article class="case-study featured">
+                        <div class="case-content">
+                            <span class="case-meta">RapidWorks UG · Germany</span>
+                            <h3>Meeting Intelligence Pipeline</h3>
+                            <p><b>The Problem:</b> Critical insights from meetings are lost or poorly tracked, leading to execution gaps.</p>
+                            <p><b>The Build:</b> An automated pipeline that transcribes conversations, processes context with LLMs, and stores structured outputs.</p>
+                            <p><b>The Output:</b> Clear summaries, action items, and decisions synced into a central database.</p>
+                            <p><b>The Result:</b> Transforms meetings into actionable systems with zero information loss.</p>
+                            <div class="case-stack"><span class="stack-tag">Whisper</span><span class="stack-tag">Groq / Llama 3</span><span class="stack-tag">Supabase</span><span class="stack-tag">n8n</span></div>
+                        </div>
+                        <div class="workflow-card" data-pattern="linear" data-title="Meeting Intelligence Canvas" data-source="Audio" data-logic="Transcribe" data-ai="Llama 3 Context" data-data="Supabase" data-output="Actions + Decisions"></div>
                     </article>
 
                     <article class="case-study">
                         <div class="case-content">
-                            <span class="case-meta">Logistics</span>
-                            <h3>Last-Mile Optimization Agent</h3>
-                            <p><b>The Problem:</b> Inefficient driver routing created avoidable delays and daily revenue leakage.</p>
-                            <p><b>The Build:</b> A real-time optimization agent that checks traffic, delivery priority, and driver availability before dynamically routing fleets.</p>
-                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">Google Maps API</span><span class="stack-tag">Dispatch Logic</span></div>
+                            <span class="case-meta">RapidWorks UG · Germany</span>
+                            <h3>Ghostwriter Button Listener</h3>
+                            <p><b>The Problem:</b> Content creation is slow, inconsistent, and dependent on manual effort.</p>
+                            <p><b>The Build:</b> A trigger-based system that pulls context, constructs prompts, and generates structured content instantly.</p>
+                            <p><b>The Output:</b> One-click generation of ready-to-edit drafts across multiple use cases.</p>
+                            <p><b>The Result:</b> Increases content production speed and removes creative bottlenecks.</p>
+                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">OpenAI</span><span class="stack-tag">Webhooks</span></div>
                         </div>
-                        <div class="workflow-card" data-title="Route Logic Canvas" data-source="Orders" data-logic="Priority Sort" data-ai="Route Agent" data-data="Maps API" data-output="Driver Update"></div>
+                        <div class="workflow-card" data-pattern="loop" data-title="Ghostwriter Canvas" data-source="Button Trigger" data-logic="Prompt Builder" data-ai="OpenAI Draft" data-data="Context Bank" data-output="Ready Draft"></div>
                     </article>
 
                     <article class="case-study">
                         <div class="case-content">
-                            <span class="case-meta">HR Systems</span>
-                            <h3>Global Talent Sourcing Engine</h3>
-                            <p><b>The Problem:</b> Technical talent sourcing consumed 40+ hours per week per recruiter.</p>
-                            <p><b>The Build:</b> A scraper-based workflow that finds, enriches, and scores candidates against technical criteria before syncing them into a central table.</p>
-                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">Supabase</span><span class="stack-tag">Scoring Logic</span></div>
+                            <span class="case-meta">Germany</span>
+                            <h3>Applicant Intelligence System</h3>
+                            <p><b>The Problem:</b> Manual CV screening is slow, inconsistent, and difficult to scale.</p>
+                            <p><b>The Build:</b> A real-time scoring engine using logic filters and evaluation criteria to rank candidates automatically.</p>
+                            <p><b>The Output:</b> Instantly prioritized candidate lists based on predefined performance indicators.</p>
+                            <p><b>The Result:</b> Accelerates hiring decisions and improves candidate selection accuracy.</p>
+                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">Logic Filtering</span><span class="stack-tag">Webhooks</span></div>
                         </div>
-                        <div class="workflow-card" data-title="Talent Pipeline Canvas" data-source="Source Lists" data-logic="Enrich Data" data-ai="Fit Score" data-data="Supabase" data-output="Recruiter Queue"></div>
+                        <div class="workflow-card" data-pattern="stack" data-title="Applicant Scoring Canvas" data-source="CV Intake" data-logic="Filter Criteria" data-ai="Score Logic" data-data="Candidate Table" data-output="Ranked List"></div>
                     </article>
 
                     <article class="case-study">
                         <div class="case-content">
-                            <span class="case-meta">Manufacturing</span>
-                            <h3>AI Quality Control Bot</h3>
-                            <p><b>The Problem:</b> Inconsistent defect identification increased returns and slowed response time.</p>
-                            <p><b>The Build:</b> A computer vision workflow connected to n8n that flags defects, logs incidents, and alerts managers instantly.</p>
-                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">OpenCV</span><span class="stack-tag">Alerts</span></div>
+                            <span class="case-meta">Germany</span>
+                            <h3>Job Scraper & Candidate Finder</h3>
+                            <p><b>The Problem:</b> Candidate and job data are scattered across multiple platforms, making sourcing inefficient.</p>
+                            <p><b>The Build:</b> A scraping and structuring engine that aggregates job listings and candidate data into a unified system.</p>
+                            <p><b>The Output:</b> Clean, organized datasets ready for recruitment workflows.</p>
+                            <p><b>The Result:</b> Creates scalable, automated sourcing pipelines with centralized data access.</p>
+                            <div class="case-stack"><span class="stack-tag">Web Scraping</span><span class="stack-tag">Supabase</span><span class="stack-tag">n8n</span></div>
                         </div>
-                        <div class="workflow-card" data-title="Quality Control Canvas" data-source="Camera Feed" data-logic="Frame Check" data-ai="Vision Model" data-data="Defect Log" data-output="Manager Alert"></div>
+                        <div class="workflow-card" data-pattern="split" data-title="Sourcing Pipeline Canvas" data-source="Job Boards" data-logic="Normalize Data" data-ai="Match Signals" data-data="Supabase" data-output="Recruitment Dataset"></div>
                     </article>
 
                     <article class="case-study">
                         <div class="case-content">
-                            <span class="case-meta">Education</span>
-                            <h3>Autonomous Fee Management</h3>
-                            <p><b>The Problem:</b> Manual payment tracking and invoice follow-up created administrative drag for a school chain.</p>
-                            <p><b>The Build:</b> End-to-end automation for dynamic invoicing, payment matching, parent reminders, and finance reporting.</p>
-                            <div class="case-stack"><span class="stack-tag">ERP Sync</span><span class="stack-tag">n8n</span><span class="stack-tag">SMS</span></div>
+                            <span class="case-meta">RapidWorks UG · Germany</span>
+                            <h3>Auto Onboarding System</h3>
+                            <p><b>The Problem:</b> Onboarding new team members is manual, time-consuming, and inconsistent.</p>
+                            <p><b>The Build:</b> An automated workflow that triggers account setup, task allocation, and onboarding communication.</p>
+                            <p><b>The Output:</b> Fully prepared work environments delivered within minutes of onboarding.</p>
+                            <p><b>The Result:</b> Reduces onboarding time drastically and ensures consistent team integration.</p>
+                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">Supabase</span><span class="stack-tag">Email Automation</span></div>
                         </div>
-                        <div class="workflow-card" data-title="Fee Management Canvas" data-source="Invoice" data-logic="Match Payment" data-ai="Reminder Rules" data-data="ERP Ledger" data-output="SMS Notice"></div>
+                        <div class="workflow-card" data-pattern="linear" data-title="Onboarding Canvas" data-source="New Hire" data-logic="Provision Tasks" data-ai="Rule Engine" data-data="Supabase" data-output="Welcome Flow"></div>
                     </article>
 
                     <article class="case-study">
                         <div class="case-content">
-                            <span class="case-meta">SME Retail</span>
-                            <h3>Predictive Inventory Bridge</h3>
-                            <p><b>The Problem:</b> Stock-outs and excess inventory came from reactive ordering and fragmented sales data.</p>
-                            <p><b>The Build:</b> A bridge automation connecting sales channels to ERPs for unified data integrity, demand signals, and reorder prompts.</p>
-                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">Data Bridges</span><span class="stack-tag">ERP</span></div>
+                            <span class="case-meta">Germany</span>
+                            <h3>Excel Auto-Update Pipeline</h3>
+                            <p><b>The Problem:</b> Manual updates to shared Excel files lead to outdated data and inefficiencies.</p>
+                            <p><b>The Build:</b> A live synchronization system connecting operational data sources directly to Excel.</p>
+                            <p><b>The Output:</b> Continuously updated spreadsheets without manual input.</p>
+                            <p><b>The Result:</b> Eliminates manual data handling and ensures real-time accuracy.</p>
+                            <div class="case-stack"><span class="stack-tag">Excel API</span><span class="stack-tag">Webhooks</span><span class="stack-tag">n8n</span></div>
                         </div>
-                        <div class="workflow-card" data-title="Inventory Bridge Canvas" data-source="Sales Data" data-logic="Demand Check" data-ai="Forecast" data-data="ERP Stock" data-output="Reorder Task"></div>
+                        <div class="workflow-card" data-pattern="hub" data-title="Excel Sync Canvas" data-source="Ops Data" data-logic="Webhook Sync" data-ai="Validation Rules" data-data="Excel API" data-output="Live Spreadsheet"></div>
                     </article>
 
                     <article class="case-study">
                         <div class="case-content">
-                            <span class="case-meta">Hospitality</span>
-                            <h3>Digital Hotel Agent</h3>
-                            <p><b>The Problem:</b> Delayed responses outside business hours caused missed bookings and lost upsell moments.</p>
-                            <p><b>The Build:</b> A conversational AI workflow for guest questions, concierge requests, escalation, and automated upsells.</p>
-                            <div class="case-stack"><span class="stack-tag">RAG LLM</span><span class="stack-tag">n8n</span><span class="stack-tag">CRM</span></div>
+                            <span class="case-meta">Germany</span>
+                            <h3>Link Aggregator Table Builder</h3>
+                            <p><b>The Problem:</b> Critical data sources are fragmented and difficult to query efficiently.</p>
+                            <p><b>The Build:</b> An aggregation system that collects, structures, and normalizes data into a central database.</p>
+                            <p><b>The Output:</b> A clean, queryable table of structured links and metadata.</p>
+                            <p><b>The Result:</b> Transforms scattered information into centralized, usable intelligence.</p>
+                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">Web Scraping</span><span class="stack-tag">Supabase</span></div>
                         </div>
-                        <div class="workflow-card" data-title="Hotel Agent Canvas" data-source="Guest Chat" data-logic="Intent Route" data-ai="RAG Agent" data-data="CRM" data-output="Upsell / Reply"></div>
+                        <div class="workflow-card" data-pattern="loop" data-title="Link Aggregator Canvas" data-source="Source Links" data-logic="Collect + Clean" data-ai="Metadata Rules" data-data="Supabase" data-output="Queryable Table"></div>
                     </article>
+                </div>
+            </section>
 
-                    <article class="case-study">
-                        <div class="case-content">
-                            <span class="case-meta">Public Services</span>
-                            <h3>Public Citizen Portal</h3>
-                            <p><b>The Problem:</b> Service requests bottlenecked because intake, processing, and status updates were handled manually.</p>
-                            <p><b>The Build:</b> A portal-backed workflow for application intake, back-office routing, status tracking, and citizen notifications.</p>
-                            <div class="case-stack"><span class="stack-tag">n8n</span><span class="stack-tag">Portal Logic</span><span class="stack-tag">Status Sync</span></div>
+            <section class="section" id="media">
+                <div class="section-head">
+                    <div>
+                        <span class="section-kicker">Media</span>
+                        <h2>Automation snapshots and build walkthroughs.</h2>
+                    </div>
+                    <p class="section-lede">A space for workflow screenshots, n8n canvases, short demos, and video walkthroughs of systems I’ve built.</p>
+                </div>
+
+                <div class="media-grid">
+                    <article class="media-card">
+                        <div class="media-preview"><div class="media-play"><i data-lucide="image"></i></div></div>
+                        <div class="media-body">
+                            <h3>Workflow Screenshot</h3>
+                            <p>Replace this with a screenshot of an n8n canvas, database flow, or automation dashboard.</p>
                         </div>
-                        <div class="workflow-card" data-title="Citizen Portal Canvas" data-source="Portal Form" data-logic="Validate" data-ai="Case Triage" data-data="Case DB" data-output="Status Update"></div>
                     </article>
-
-                    <article class="case-study">
-                        <div class="case-content">
-                            <span class="case-meta">Knowledge Ops</span>
-                            <h3>General Meeting Listener</h3>
-                            <p><b>The Problem:</b> Important strategy insights were lost because meeting notes were inconsistent and action items were scattered.</p>
-                            <p><b>The Build:</b> An autonomous listener that captures audio, transcribes discussion, extracts decisions, and syncs action items to project tools.</p>
-                            <div class="case-stack"><span class="stack-tag">Whisper AI</span><span class="stack-tag">n8n</span><span class="stack-tag">PM Sync</span></div>
+                    <article class="media-card">
+                        <div class="media-preview"><div class="media-play"><i data-lucide="play"></i></div></div>
+                        <div class="media-body">
+                            <h3>Video Walkthrough</h3>
+                            <p>Add a Loom, YouTube, or hosted demo link showing how one automation works from trigger to output.</p>
                         </div>
-                        <div class="workflow-card" data-title="Meeting Listener Canvas" data-source="Audio" data-logic="Transcript" data-ai="Action Extract" data-data="Knowledge Base" data-output="PM Tasks"></div>
                     </article>
-
-                    <article class="case-study">
-                        <div class="case-content">
-                            <span class="case-meta">Real Estate</span>
-                            <h3>Listing Sync & Qualifier</h3>
-                            <p><b>The Problem:</b> Property managers lost leads because listings were hard to keep synced and follow-ups were too slow.</p>
-                            <p><b>The Build:</b> An online workflow for automated property synchronization, lead qualification, routing, and fast follow-up.</p>
-                            <div class="case-stack"><span class="stack-tag">API Sync</span><span class="stack-tag">n8n</span><span class="stack-tag">Lead Routing</span></div>
+                    <article class="media-card">
+                        <div class="media-preview"><div class="media-play"><i data-lucide="monitor-play"></i></div></div>
+                        <div class="media-body">
+                            <h3>System Demo</h3>
+                            <p>Use this for before-and-after process demos, Teams agents, spreadsheet syncs, or AI outputs.</p>
                         </div>
-                        <div class="workflow-card" data-title="Listing Qualifier Canvas" data-source="Listings" data-logic="Sync Check" data-ai="Lead Score" data-data="Property DB" data-output="Agent Follow-up"></div>
                     </article>
                 </div>
             </section>
@@ -1097,6 +1568,7 @@
     <script>
         const makeWorkflow = (card) => {
             const title = card.dataset.title;
+            const pattern = card.dataset.pattern || "hub";
             const labels = {
                 source: card.dataset.source,
                 logic: card.dataset.logic,
@@ -1104,22 +1576,49 @@
                 data: card.dataset.data,
                 output: card.dataset.output
             };
+            const paths = {
+                linear: `
+                        <path class="wire" d="M70 144 H160"></path>
+                        <path class="wire" d="M240 144 H320"></path>
+                        <path class="wire" d="M390 144 C430 144 430 188 452 188"></path>
+                        <path class="wire" d="M204 168 V224"></path>
+                        <path class="wire" d="M204 224 C292 250 350 226 428 206"></path>`,
+                hub: `
+                        <path class="wire" d="M94 58 C168 58 188 118 244 138"></path>
+                        <path class="wire" d="M430 58 C354 58 330 118 276 138"></path>
+                        <path class="wire" d="M96 226 C170 226 190 166 244 144"></path>
+                        <path class="wire" d="M426 226 C350 226 328 166 276 144"></path>`,
+                loop: `
+                        <path class="wire" d="M106 58 C210 18 328 22 426 62"></path>
+                        <path class="wire" d="M454 92 C486 148 484 192 422 224"></path>
+                        <path class="wire" d="M338 226 C260 256 168 256 100 226"></path>
+                        <path class="wire" d="M70 198 C36 142 38 92 106 58"></path>
+                        <path class="wire" d="M242 140 C184 112 142 94 106 74"></path>`,
+                split: `
+                        <path class="wire" d="M78 140 C138 140 156 140 204 140"></path>
+                        <path class="wire" d="M278 130 C332 82 364 60 424 58"></path>
+                        <path class="wire" d="M278 154 C338 198 368 224 424 224"></path>
+                        <path class="wire" d="M244 170 V226"></path>`,
+                stack: `
+                        <path class="wire" d="M74 58 C132 72 138 112 74 140"></path>
+                        <path class="wire" d="M148 78 C232 78 274 90 384 104"></path>
+                        <path class="wire" d="M386 132 C388 174 388 188 386 210"></path>
+                        <path class="wire" d="M318 226 C210 244 150 236 76 226"></path>
+                        <path class="wire" d="M148 152 C226 166 278 188 320 216"></path>`
+            };
 
             card.innerHTML = `
                 <div class="workflow-topbar">
                     <b>${title}</b>
                     <span>Active</span>
                 </div>
-                <div class="workflow-canvas">
+                <div class="workflow-canvas" data-pattern="${pattern}">
                     <svg class="lines" viewBox="0 0 520 280" preserveAspectRatio="none" aria-hidden="true">
-                        <path class="wire" d="M74 52 C170 52 168 116 244 116"></path>
-                        <path class="wire" d="M314 116 C380 116 374 60 452 60"></path>
-                        <path class="wire" d="M270 144 C220 190 166 208 92 224"></path>
-                        <path class="wire" d="M310 148 C370 188 394 220 430 220"></path>
+                        ${paths[pattern] || paths.hub}
                     </svg>
                     <div class="mini-node source"><i data-lucide="webhook"></i><div><b>${labels.source}</b><span>Trigger</span></div></div>
                     <div class="mini-node logic"><i data-lucide="workflow"></i><div><b>${labels.logic}</b><span>n8n branch</span></div></div>
-                    <div class="mini-node ai"><i data-lucide="brain-circuit"></i><div><b>${labels.ai}</b><span>AI decision</span></div></div>
+                    <div class="mini-node ai"><i data-lucide="brain-circuit"></i><div><b>${labels.ai}</b><span>Decision layer</span></div></div>
                     <div class="mini-node data"><i data-lucide="database"></i><div><b>${labels.data}</b><span>Source of truth</span></div></div>
                     <div class="mini-node output"><i data-lucide="send"></i><div><b>${labels.output}</b><span>Outcome</span></div></div>
                 </div>
@@ -1128,6 +1627,21 @@
 
         document.querySelectorAll(".workflow-card").forEach(makeWorkflow);
         lucide.createIcons();
+
+        const readMoreButton = document.querySelector(".read-more");
+        const aboutMore = document.querySelector("#about-more");
+
+        if (readMoreButton && aboutMore) {
+            readMoreButton.addEventListener("click", () => {
+                const isExpanded = readMoreButton.getAttribute("aria-expanded") === "true";
+                readMoreButton.setAttribute("aria-expanded", String(!isExpanded));
+                aboutMore.hidden = isExpanded;
+                readMoreButton.innerHTML = isExpanded
+                    ? 'Read More <i data-lucide="chevron-down"></i>'
+                    : 'Show Less <i data-lucide="chevron-up"></i>';
+                lucide.createIcons();
+            });
+        }
 
         const runCounter = () => {
             document.querySelectorAll(".counter").forEach((counter) => {
